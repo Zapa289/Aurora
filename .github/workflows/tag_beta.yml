@@ -48,7 +48,7 @@ jobs:
         echo ${{ github.ref }}
 
     - name: Set beta
-      uses: mathieudutour/github-tag-action@v5.5
+      uses: simpleactions/create-tag@v1.0.0
       with:
         github_token: ${{ secrets.REPOSITORY_ACCESS_TOKEN }}
         tag: "${{ github.event.head_commit.message }}.${{ github.run_number }}-beta"
