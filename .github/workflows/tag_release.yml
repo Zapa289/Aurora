@@ -7,7 +7,26 @@ on:
       - main
 
 jobs:
-  release:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check for release version
+      uses: actions/github-script@v2
+      id: check
+      with:
+        script: |
+          const { owner, repo } = context.repo
+          const regex = /\d+\.\d+\.\d+\.\d+/g;
+          if (regex.test("${{ github.event.head_commit.message }}")) {
+            return "build"
+          } else {
+            core.setFailed("Not a release");
+          }
+        result-encoding: string
+
+  tag:
+    needs: check
     runs-on: ubuntu-latest
 
     steps:
@@ -26,23 +45,6 @@ jobs:
         echo ${{ github.event_name }}
         echo ${{ github.event_path }}
         echo ${{ github.ref }}
-
-    - name: Check for release version
-      uses: actions/github-script@v2
-      id: check
-      with:
-        script: |
-          const { owner, repo } = context.repo
-          const regex = /\d+\.\d+\.\d+\.\d+/g;
-          if (regex.test("${{ github.event.head_commit.message }}")) {
-            return "build"
-          } else {
-            console.log("Beta build, cancelling ...");
-            const run_id = "${{ github.run_id }}";
-            await github.actions.cancelWorkflowRun({ owner, repo, run_id });
-            return "stop"
-          }
-        result-encoding: string
 
     - name: Set release
       if: steps.check.outputs.result == 'build'
