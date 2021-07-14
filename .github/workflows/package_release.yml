@@ -3,9 +3,14 @@ name: Create Release Package
 on:
   create:
 
+env:
+  CF_API_KEY: ${{ secrets.CF_API_KEY }}
+  WOWI_API_TOKEN: ${{ secrets.WOWI_API_TOKEN }}
+  GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   is_release:
-    if: contains(github.ref, 'beta') != true
+    if: contains(github.ref, 'release') == true
     runs-on: ubuntu-latest
 
     steps:

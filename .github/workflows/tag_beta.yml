@@ -49,5 +49,5 @@ jobs:
       uses: mathieudutour/github-tag-action@v5.5
       with:
         github_token: ${{ secrets.REPOSITORY_ACCESS_TOKEN }}
-        custom_tag: "${{ github.event.head_commit.message }}.${{ github.run_number }}-beta"
-        create_annotated_tag: true
+        tag: "${{ github.event.head_commit.message }}.${{ github.run_number }}-beta"
+        message: "beta"
