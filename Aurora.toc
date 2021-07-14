@@ -12,6 +12,7 @@
 ## X-Website: http://www.wowinterface.com/downloads/info18589.html
 ## X-Curse-Project-ID: 278735
 ## X-WoWI-ID: 18589
+## X-Wago-ID: JZKbRK19
 
 Skin\skin.xml
 
