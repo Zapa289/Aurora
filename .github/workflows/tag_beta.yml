@@ -48,8 +48,10 @@ jobs:
         echo ${{ github.ref }}
 
     - name: Set beta
-      uses: simpleactions/create-tag@v1.0.0
+      uses: onemedical/action-general-autotag@main
       with:
-        github_token: ${{ secrets.REPOSITORY_ACCESS_TOKEN }}
-        tag: "${{ github.event.head_commit.message }}.${{ github.run_number }}-beta"
-        message: "beta"
+        GITHUB_TOKEN: ${{ secrets.REPOSITORY_ACCESS_TOKEN }}
+        source_file: "Aurora.toc"
+        extraction_regex: "\\s*##\\s*Version\\s*:\\s*(\\d+\\.\\d+\\.\\d+.\\d+)"
+        tag_format: "{version}.${{ github.run_number }}-beta"
+        tag_message: "beta"
