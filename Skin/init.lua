@@ -206,6 +206,21 @@ else
     profile.host = ADDON_NAME
 end
 
+do -- set up file order
+    private.fileOrder = {}
+    local mt = {
+        __newindex = function(t, k, v)
+            tinsert(private.fileOrder, {list = t, name = k})
+            rawset(t, k, v)
+        end
+    }
+
+    private.AddOns = {}
+    private.FrameXML = setmetatable({}, mt)
+    private.SharedXML = setmetatable({}, mt)
+end
+
+
 local eventFrame = _G.CreateFrame("Frame")
 eventFrame:RegisterEvent("ADDON_LOADED")
 eventFrame:RegisterEvent("UI_SCALE_CHANGED")

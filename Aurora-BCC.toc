@@ -1,0 +1,23 @@
+## Interface: 20501
+## Title: Aurora
+## Notes: Minimalistic window theme.
+## Author: Haleth/Lightsword, Gethe
+## Version: 9.0.5.0
+## LoadWith: Blizzard_CompactRaidFrames
+## OptionalDeps: Ace3, LibTextDump-1.0, BugSack
+## SavedVariables: AuroraConfig
+## X-Website: http://www.wowinterface.com/downloads/info18589.html
+## X-Curse-Project-ID: 278735
+## X-WoWI-ID: 18589
+## X-Wago-ID: JZKbRK19
+
+Skin\skin.xml
+Skin\Classic\Interface\AddOns\AddOns_TBC.xml
+Skin\Classic\Interface\FrameXML\FrameXML_TBC.xml
+
+aurora.lua
+gui.lua
+
+#@do-not-package@
+dev\test.lua
+#@end-do-not-package@
