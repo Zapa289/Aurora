@@ -54,7 +54,7 @@ function private.OnLoad()
     end
 
     -- Remove deprecated or corrupt variables
-    for key, value in next, AuroraConfig do
+    for key in next, AuroraConfig do
         if C.defaults[key] == nil then
             AuroraConfig[key] = nil
         end
@@ -65,7 +65,7 @@ function private.OnLoad()
         if AuroraConfig[key] == nil then
             if _G.type(value) == "table" then
                 AuroraConfig[key] = {}
-                for k, v in next, value do
+                for k in next, value do
                     AuroraConfig[key][k] = value[k]
                 end
             else

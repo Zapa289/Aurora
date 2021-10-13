@@ -80,15 +80,10 @@ function private.SharedXML.VideoOptionsPanels()
     -- Effects
     Skin.VideoOptionsDropDownMenuTemplate(_G.Graphics_ShadowsDropDown)
     Skin.VideoOptionsDropDownMenuTemplate(_G.Graphics_LiquidDetailDropDown)
-    if not private.isPatch then
-        Skin.VideoOptionsDropDownMenuTemplate(_G.Graphics_SunshaftsDropDown)
-    end
     Skin.VideoOptionsDropDownMenuTemplate(_G.Graphics_ParticleDensityDropDown)
     Skin.VideoOptionsDropDownMenuTemplate(_G.Graphics_SSAODropDown)
     Skin.VideoOptionsDropDownMenuTemplate(_G.Graphics_DepthEffectsDropDown)
-    if private.isPatch then
-        Skin.VideoOptionsDropDownMenuTemplate(_G.Graphics_ComputeEffectsDropDown)
-    end
+    Skin.VideoOptionsDropDownMenuTemplate(_G.Graphics_ComputeEffectsDropDown)
     Skin.VideoOptionsDropDownMenuTemplate(_G.Graphics_OutlineModeDropDown)
 
     ----------------
@@ -111,15 +106,10 @@ function private.SharedXML.VideoOptionsPanels()
     -- Effects
     Skin.VideoOptionsDropDownMenuTemplate(_G.RaidGraphics_ShadowsDropDown)
     Skin.VideoOptionsDropDownMenuTemplate(_G.RaidGraphics_LiquidDetailDropDown)
-    if not private.isPatch then
-        Skin.VideoOptionsDropDownMenuTemplate(_G.RaidGraphics_SunshaftsDropDown)
-    end
     Skin.VideoOptionsDropDownMenuTemplate(_G.RaidGraphics_ParticleDensityDropDown)
     Skin.VideoOptionsDropDownMenuTemplate(_G.RaidGraphics_SSAODropDown)
     Skin.VideoOptionsDropDownMenuTemplate(_G.RaidGraphics_DepthEffectsDropDown)
-    if private.isPatch then
-        Skin.VideoOptionsDropDownMenuTemplate(_G.RaidGraphics_ComputeEffectsDropDown)
-    end
+    Skin.VideoOptionsDropDownMenuTemplate(_G.RaidGraphics_ComputeEffectsDropDown)
     Skin.VideoOptionsDropDownMenuTemplate(_G.RaidGraphics_OutlineModeDropDown)
 
 
