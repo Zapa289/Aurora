@@ -20,15 +20,9 @@ do --[[ AddOns\Blizzard_Soulbinds.xml ]]
             bg2:SetAlpha(0)
         end
         function Skin.ConduitListTemplate(Frame)
-            Frame.BottomShadowContainer:Hide()
-            Frame.ScrollBar.Track:Hide()
-            Skin.FrameTypeScrollBarButton(Frame.ScrollBar.Decrease)
-            Skin.FrameTypeScrollBarButton(Frame.ScrollBar.Increase)
-            Skin.FrameTypeScrollBarButton(Frame.ScrollBar.Thumb)
-
-            for i = 1, #Frame.ScrollBox.ScrollTarget.Lists do
-                Skin.ConduitListSectionTemplate(Frame.ScrollBox.ScrollTarget.Lists[i])
-            end
+            Skin.OribosScrollBar(Frame.ScrollBar)
+            Frame.ScrollBar:SetPoint("TOPRIGHT", -8, -36)
+            Skin.WowScrollBoxList(Frame.ScrollBox)
         end
     end
 
@@ -101,7 +95,7 @@ function private.AddOns.Blizzard_Soulbinds()
     SoulbindViewer.ShadowLeft:Hide()
     SoulbindViewer.ShadowRight:Hide()
 
-    local scrollBG = select(21, SoulbindViewer:GetRegions())
+    local scrollBG = select(20, SoulbindViewer:GetRegions())
     scrollBG:Hide()
 
     local bg = SoulbindViewer:GetBackdropTexture("bg")
@@ -110,7 +104,7 @@ function private.AddOns.Blizzard_Soulbinds()
     SoulbindViewer.CloseButton:SetPoint("TOPRIGHT", bg, 5.6, 5)
     --Skin.SoulbindSelectGroupTemplate(SoulbindViewer.SelectGroup)
     --Skin.SoulbindTreeTemplate(SoulbindViewer.Tree)
-    --Skin.ConduitListTemplate(SoulbindViewer.ConduitList)
+    Skin.ConduitListTemplate(SoulbindViewer.ConduitList)
     Skin.UIPanelButtonTemplate(SoulbindViewer.ActivateSoulbindButton)
     Skin.UIPanelButtonTemplate(SoulbindViewer.CommitConduitsButton)
 

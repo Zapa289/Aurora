@@ -818,13 +818,15 @@ function private.AddOns.Blizzard_Collections()
 
     local ModelScene = WardrobeTransmogFrame.ModelScene
     Skin.UIMenuButtonStretchTemplate(ModelScene.ClearAllPendingButton)
-    -- for i = 1, #ModelScene.SlotButtons do
-        -- if i > 13 then
-            -- Skin.WardrobeTransmogEnchantButtonTemplate(ModelScene.SlotButtons[i])
-        -- else
-            -- Skin.WardrobeTransmogButtonTemplate(ModelScene.SlotButtons[i])
-        -- end
-    -- end
+
+    local SlotButtons = WardrobeTransmogFrame.SlotButtons
+    for i = 1, #SlotButtons do
+        if i > 13 then
+            Skin.WardrobeTransmogEnchantButtonTemplate(SlotButtons[i])
+        else
+            Skin.WardrobeTransmogButtonTemplate(SlotButtons[i])
+        end
+    end
 
     Skin.SmallMoneyFrameTemplate(WardrobeTransmogFrame.MoneyFrame)
     Skin.UIPanelButtonTemplate(WardrobeTransmogFrame.ApplyButton)

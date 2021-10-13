@@ -62,6 +62,19 @@ do --[[ FrameXML\ScrollTemplates.xml ]]
         Skin.WowScrollBarStepperButtonScripts(Frame.Forward)
         Frame.Forward:SetPoint("BOTTOMLEFT", 4, 2)
     end
+
+    function Skin.OribosScrollBarButtonScripts(Frame)
+        Skin.FrameTypeScrollBarButton(Frame)
+    end
+
+    function Skin.OribosScrollBar(Frame)
+        Skin.VerticalScrollBarTemplate(Frame)
+
+        Frame.Track:GetRegions():Hide() -- background
+        Skin.OribosScrollBarButtonScripts(Frame.Track.Thumb)
+        Skin.OribosScrollBarButtonScripts(Frame.Back)
+        Skin.OribosScrollBarButtonScripts(Frame.Forward)
+    end
 end
 
 function private.SharedXML.ScrollTemplates()

@@ -11,6 +11,19 @@ local Hook, Skin = Aurora.Hook, Aurora.Skin
 local Color = Aurora.Color
 
 do --[[ AddOns\Blizzard_PVPUI.lua ]]
+    Hook.NewPvpSeasonMixin = {}
+    function Hook.NewPvpSeasonMixin:OnShow()
+        while not self.SeasonDescriptions do
+            -- Can't seem to be able to properly hook OnShow for this frame, so just
+            -- show cycle it to force the SeasonDescriptions to be created.
+            self:Show()
+            self:Hide()
+        end
+
+        for i = 1, #self.SeasonDescriptions do
+            self.SeasonDescriptions[i]:SetTextColor(Color.grayLight:GetRGB())
+        end
+    end
     function Hook.PVPQueueFrame_SelectButton(index)
         for i = 1, 3 do
             local button = _G.PVPQueueFrame["CategoryButton"..i]
@@ -20,6 +33,8 @@ do --[[ AddOns\Blizzard_PVPUI.lua ]]
                 button.Background:Hide()
             end
         end
+
+        Hook.NewPvpSeasonMixin.OnShow(_G.PVPQueueFrame.NewSeasonPopup, true)
     end
 end
 
@@ -55,8 +70,7 @@ do --[[ AddOns\Blizzard_PVPUI.xml ]]
         Frame.TopRightFiligree:Hide()
 
         Frame.NewSeason:SetTextColor(Color.white:GetRGB())
-        -- Frame.SeasonDescription:SetTextColor(Color.grayLight:GetRGB())
-        -- Frame.SeasonDescription2:SetTextColor(Color.grayLight:GetRGB())
+        Frame.SeasonDescriptionHeader:SetTextColor(Color.grayLight:GetRGB())
 
         Skin.UIPanelButtonTemplate(Frame.Leave)
     end
@@ -168,6 +182,7 @@ function private.AddOns.Blizzard_PVPUI()
     -----------
     local ConquestFrame = _G.ConquestFrame
     ConquestFrame:SetPoint("BOTTOM")
+    ConquestFrame:Hide()
 
     ConquestFrame.RatedBGTexture:Hide()
     Skin.PVPConquestBarTemplate(ConquestFrame.ConquestBar)
@@ -213,5 +228,6 @@ function private.AddOns.Blizzard_PVPUI()
     Skin.PVPSeasonChangesNoticeTemplate(NewSeasonPopup)
     NewSeasonPopup:SetPoint("TOPLEFT", ConquestFrame, 4, -3)
     NewSeasonPopup:SetPoint("BOTTOMRIGHT", 0, 0)
+    NewSeasonPopup.SeasonRewardText:SetTextColor(Color.grayLight:GetRGB())
     Skin.SeasonRewardFrameTemplate(NewSeasonPopup.SeasonRewardFrame)
 end

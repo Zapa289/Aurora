@@ -133,54 +133,53 @@ do --[[ FrameXML\AlertFrameSystems.xml ]]
             guildBG:SetTexture([[Interface\LFGFrame\UI-LFG-SEPARATOR]])
             guildBG:SetTexCoord(0, 0.6640625, 0, 0.25)
             guildBG:SetVertexColor(0, 0, 0)
-            guildBG:SetPoint("BOTTOM", ContainedAlertFrame, "TOP", 0, -30)
-            guildBG:SetSize(340, 64)
+            guildBG:SetPoint("BOTTOM", bg, "TOP", 0, -1)
+            guildBG:SetSize(170, 32)
             ContainedAlertFrame._auroraGuildBG = guildBG
 
-            -- ContainedAlertFrame.OldAchievement:SetAlpha(0)
             ContainedAlertFrame.glow:SetPoint("TOPLEFT", bg, -10, 10)
             ContainedAlertFrame.glow:SetPoint("BOTTOMRIGHT", bg, 10, -10)
             ContainedAlertFrame.glow:SetAtlas("Toast-Flash")
-            ContainedAlertFrame.glow:SetTexCoord(0, 1, 0, 1)
-            ContainedAlertFrame.shine:SetHeight(58)
 
             Base.CropIcon(ContainedAlertFrame.Icon.Texture, ContainedAlertFrame)
+            ContainedAlertFrame.Icon.Texture:SetSize(44, 44)
             ContainedAlertFrame.Icon.Overlay:Hide()
             ContainedAlertFrame._auroraTemplate = "AchievementAlertFrameTemplate"
         else
+            local bg = ContainedAlertFrame:GetBackdropTexture("bg")
+
             ContainedAlertFrame.Unlocked:SetPoint("RIGHT", ContainedAlertFrame.Shield.Icon, "LEFT", -5, 0)
             ContainedAlertFrame.Name:ClearAllPoints()
             ContainedAlertFrame.Name:SetPoint("TOP", ContainedAlertFrame.Unlocked, "BOTTOM", -2, 0)
             ContainedAlertFrame.Name:SetPoint("LEFT", ContainedAlertFrame.Icon.Texture, "RIGHT", 5, 0)
             ContainedAlertFrame.Name:SetPoint("RIGHT", ContainedAlertFrame.Shield.Icon, "LEFT", -5, 0)
-
+            ContainedAlertFrame.Name:SetPoint("BOTTOM", bg, 0, 5)
             ContainedAlertFrame.glow:SetAtlas("Toast-Flash")
-            ContainedAlertFrame.glow:SetTexCoord(0, 1, 0, 1)
-            if ContainedAlertFrame.guildDisplay then
+
+            ContainedAlertFrame.shine:SetPoint("TOP", bg)
+            ContainedAlertFrame.shine:SetPoint("BOTTOM", bg)
+
+            if ContainedAlertFrame.GuildName:IsShown() then
                 ContainedAlertFrame:SetBackdropOption("offsets", {
                     left = 6,
-                    right = 6,
-                    top = 29,
-                    bottom = 15,
+                    right = 9,
+                    top = 32,
+                    bottom = 16,
                 })
                 ContainedAlertFrame._auroraGuildBG:Show()
-
-                ContainedAlertFrame.Icon:SetPoint("TOPLEFT", -26, 0)
-                ContainedAlertFrame.shine:SetTexCoord(0.75195313, 0.91601563, 0.25, 0.3359375)
+                ContainedAlertFrame.Icon:SetPoint("TOPLEFT", 0, -21)
+                ContainedAlertFrame.shine:SetTexCoord(0, 1, 0.27777777777778, 0.87777777777778)
             else
                 ContainedAlertFrame:SetBackdropOption("offsets", {
                     left = 6,
-                    right = 6,
-                    top = 13,
-                    bottom = 15,
+                    right = 8,
+                    top = 18,
+                    bottom = 16,
                 })
                 ContainedAlertFrame._auroraGuildBG:Hide()
+                ContainedAlertFrame.shine:SetTexCoord(0, 1, 0.21176470588235, 0.87058823529412)
 
-                ContainedAlertFrame.shine:SetTexCoord(0.78125, 0.912109375, 0.06640625, 0.23046875)
-                ContainedAlertFrame.shine:SetPoint("BOTTOMLEFT", 0, 16)
-
-                if ContainedAlertFrame.oldCheevo then
-                    local bg = ContainedAlertFrame:GetBackdropTexture("bg")
+                if not ContainedAlertFrame.Shield.Icon:IsShown() then
                     ContainedAlertFrame.Unlocked:SetPoint("RIGHT", bg, -5, 0)
                     ContainedAlertFrame.Name:SetPoint("LEFT", ContainedAlertFrame.Icon.Texture, "RIGHT", 5, 0)
                     ContainedAlertFrame.Name:SetPoint("RIGHT", bg, -5, 0)
