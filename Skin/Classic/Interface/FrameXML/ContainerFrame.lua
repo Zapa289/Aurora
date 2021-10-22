@@ -20,14 +20,15 @@ do --[[ FrameXML\ContainerFrame.lua ]]
         self:SetTexture(BAG_FILTER_ICONS[atlas])
     end
     function Hook.ContainerFrame_GenerateFrame(frame, size, id)
+        local _, _, _, a = frame:GetBackdropColor()
         if id > _G.NUM_BAG_FRAMES then
             -- bank bags
-            local _, _, _, a = frame:GetBackdropColor()
             Base.SetBackdropColor(frame, Color.grayLight, a)
         elseif id == _G.KEYRING_CONTAINER then
             -- key ring
-            local _, _, _, a = frame:GetBackdropColor()
             Base.SetBackdropColor(frame, keyColor, a)
+        else
+            Base.SetBackdropColor(frame, Color.black, a)
         end
     end
     function Hook.ContainerFrame_Update(self)
