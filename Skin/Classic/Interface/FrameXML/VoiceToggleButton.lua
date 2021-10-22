@@ -18,9 +18,6 @@ do --[[ FrameXML\VoiceToggleButton.xml ]]
         Skin.PropertyButtonTemplate(Button)
 
         Button:SetSize(23, 23)
-        Button:SetNormalTexture("")
-        Button:SetPushedTexture("")
-        Button:SetHighlightTexture("")
         local disabled = Button:GetDisabledTexture()
         if disabled then
             disabled:SetColorTexture(0, 0, 0, .4)
@@ -28,10 +25,10 @@ do --[[ FrameXML\VoiceToggleButton.xml ]]
             disabled:SetAllPoints()
         end
 
-        Button.Icon:SetPoint("CENTER", 0, 1)
+        Button.Icon:SetPoint("CENTER", 1, 1)
 
-        Base.SetBackdrop(Button, Color.button, 0.3)
-        Base.SetHighlight(Button)
+        Skin.FrameTypeButton(Button)
+        Button:SetButtonColor(Color.button, 0.4)
     end
     function Skin.ToggleVoiceDeafenButtonTemplate(Button)
         Skin.VoiceToggleButtonTemplate(Button)

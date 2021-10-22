@@ -8,7 +8,7 @@ if private.isRetail then return end
 local Aurora = private.Aurora
 local Base = Aurora.Base
 local Hook, Skin = Aurora.Hook, Aurora.Skin
-local Color = Aurora.Color
+local Color, Util = Aurora.Color, Aurora.Util
 
 do --[[ FrameXML\FloatingChatFrame.lua ]]
     function Hook.FloatingChatFrame_UpdateBackgroundAnchors(self)
@@ -21,18 +21,6 @@ do --[[ FrameXML\FloatingChatFrame.lua ]]
     function Hook.FCF_SetWindowColor(frame, r, g, b, doNotSave)
         frame:SetBackdropColor(r, g, b)
         frame:SetBackdropBorderColor(r, g, b)
-
-        frame.buttonFrame:SetBackdropColor(r, g, b)
-        frame.buttonFrame:SetBackdropBorderColor(r, g, b)
-    end
-    function Hook.FCF_SetButtonSide(chatFrame, buttonSide, forceUpdate)
-        if buttonSide == "left" then
-            chatFrame.buttonFrame:SetPoint("TOPRIGHT", chatFrame.Background, "TOPLEFT", 0, 0)
-            chatFrame.buttonFrame:SetPoint("BOTTOMRIGHT", chatFrame.Background, "BOTTOMLEFT", 0, 0)
-        elseif buttonSide == "right" then
-            chatFrame.buttonFrame:SetPoint("TOPLEFT", chatFrame.Background, "TOPRIGHT", 0, 0)
-            chatFrame.buttonFrame:SetPoint("BOTTOMLEFT", chatFrame.Background, "BOTTOMRIGHT", 0, 0)
-        end
     end
     function Hook.FCF_CreateMinimizedFrame(chatFrame)
         local minFrame = _G[chatFrame:GetName().."Minimized"]
@@ -83,6 +71,7 @@ do --[[ FrameXML\FloatingChatFrame.xml ]]
         local buttonFrame = ScrollingMessageFrame.buttonFrame
 
         Skin.FloatingBorderedFrame(buttonFrame)
+        Util.HideNineSlice(buttonFrame)
 
         Skin.ChatFrameButton(buttonFrame.downButton)
         local bg = buttonFrame.downButton:GetBackdropTexture("bg")
@@ -120,12 +109,11 @@ do --[[ FrameXML\FloatingChatFrame.xml ]]
         bottom:SetPoint("BOTTOMRIGHT", bg, -5, 7)
         bottom:SetColorTexture(1, 1, 1)
 
-        Hook.FCF_SetButtonSide(ScrollingMessageFrame, _G.FCF_GetButtonSide(ScrollingMessageFrame))
         _G.FloatingChatFrame_UpdateBackgroundAnchors(ScrollingMessageFrame)
 
         Skin.ChatFrameEditBoxTemplate(ScrollingMessageFrame.editBox)
-        ScrollingMessageFrame.editBox:SetPoint("TOPLEFT", ScrollingMessageFrame, "BOTTOMLEFT", 0, -5)
-        ScrollingMessageFrame.editBox:SetPoint("RIGHT", ScrollingMessageFrame.ScrollBar)
+        ScrollingMessageFrame.editBox:SetPoint("TOPLEFT", ScrollingMessageFrame, "BOTTOMLEFT", -2, -8)
+        ScrollingMessageFrame.editBox:SetPoint("TOPRIGHT", ScrollingMessageFrame, "BOTTOMRIGHT", 2, -8)
     end
     function Skin.FloatingChatFrameMinimizedTemplate(Button)
         Button:SetSize(172, 23)
@@ -155,6 +143,7 @@ do --[[ FrameXML\FloatingChatFrame.xml ]]
 
     function Skin.ChatFrameButton(Button, texture)
         Skin.FrameTypeButton(Button)
+        Button:SetButtonColor(Color.button, 0.4)
         Button:SetBackdropOption("offsets", {
             left = 5,
             right = 5,
@@ -178,7 +167,6 @@ function private.FrameXML.FloatingChatFrame()
 
     _G.hooksecurefunc("FloatingChatFrame_UpdateBackgroundAnchors", Hook.FloatingChatFrame_UpdateBackgroundAnchors)
     _G.hooksecurefunc("FCF_SetWindowColor", Hook.FCF_SetWindowColor)
-    _G.hooksecurefunc("FCF_SetButtonSide", Hook.FCF_SetButtonSide)
     _G.hooksecurefunc("FCF_CreateMinimizedFrame", Hook.FCF_CreateMinimizedFrame)
 
     for i = 1, 10 do
