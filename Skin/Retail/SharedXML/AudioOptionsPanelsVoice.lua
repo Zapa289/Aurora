@@ -7,6 +7,7 @@ if not private.isRetail then return end
 --[[ Core ]]
 local Aurora = private.Aurora
 local Skin = Aurora.Skin
+local Util = Aurora.Util
 
 --do --[[ FrameXML\AudioOptionsPanelsVoice.lua ]]
 --end
@@ -25,7 +26,7 @@ function private.SharedXML.AudioOptionsPanelsVoice()
 
     local TestInputDevice = AudioOptionsVoicePanel.TestInputDevice
     Skin.OptionsButtonTemplate(TestInputDevice.ToggleTest)
-    TestInputDevice.VUMeter:SetBackdrop(nil)
+    Util.HideNineSlice(TestInputDevice.VUMeter)
     Skin.FrameTypeStatusBar(TestInputDevice.VUMeter.Status)
 
     Skin.OptionsDropdownTemplate(AudioOptionsVoicePanel.ChatModeDropdown)

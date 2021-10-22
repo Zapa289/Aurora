@@ -491,20 +491,41 @@ do --[[ SharedXML\SharedUIPanelTemplates.xml ]]
         end
     end
 
+    function Skin.TooltipBackdropTemplate(Frame)
+        if private.isPatch then
+            Skin.NineSlicePanelTemplate(Frame.NineSlice)
+        else
+            Skin.FrameTypeFrame(Frame)
+        end
+    end
+
+    function Skin.TooltipBorderBackdropTemplate(Frame)
+        if private.isPatch then
+            Skin.TooltipBackdropTemplate(Frame)
+        else
+            Skin.FrameTypeFrame(Frame)
+            Frame:SetBackdropColor(Color.frame, 0)
+        end
+    end
+
     function Skin.TooltipBorderedFrameTemplate(Frame)
-        Frame.BorderTopLeft:Hide()
-        Frame.BorderTopRight:Hide()
+        if private.isPatch then
+            Skin.TooltipBackdropTemplate(Frame)
+        else
+            Frame.BorderTopLeft:Hide()
+            Frame.BorderTopRight:Hide()
 
-        Frame.BorderBottomLeft:Hide()
-        Frame.BorderBottomRight:Hide()
+            Frame.BorderBottomLeft:Hide()
+            Frame.BorderBottomRight:Hide()
 
-        Frame.BorderTop:Hide()
-        Frame.BorderBottom:Hide()
-        Frame.BorderLeft:Hide()
-        Frame.BorderRight:Hide()
+            Frame.BorderTop:Hide()
+            Frame.BorderBottom:Hide()
+            Frame.BorderLeft:Hide()
+            Frame.BorderRight:Hide()
 
-        Frame.Background:Hide()
-        Skin.FrameTypeFrame(Frame)
+            Frame.Background:Hide()
+            Skin.FrameTypeFrame(Frame)
+        end
     end
 
     function Skin.UIMenuButtonStretchTemplate(Button)
@@ -565,7 +586,11 @@ do --[[ SharedXML\SharedUIPanelTemplates.xml ]]
 
         Skin.UIPanelScrollUpButtonTemplate(_G[name.."ScrollUpButton"])
         Skin.UIPanelScrollDownButtonTemplate(_G[name.."ScrollDownButton"])
-        _G[name.."Border"]:SetBackdrop(nil)
+        if private.isPatch then
+            _G[name.."Border"].NineSlice:Hide()
+        else
+            Util.HideNineSlice(_G[name.."Border"])
+        end
 
         Skin.ScrollBarThumb(Slider:GetThumbTexture())
     end

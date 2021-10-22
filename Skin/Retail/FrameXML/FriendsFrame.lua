@@ -292,13 +292,14 @@ function private.FrameXML.FriendsFrame()
     -------------------------
     -- FriendsFriendsFrame --
     -------------------------
-    Skin.DialogBorderTemplate(_G.FriendsFriendsFrame.Border)
+    local FriendsFriendsFrame = _G.FriendsFriendsFrame
+    Skin.DialogBorderTemplate(FriendsFriendsFrame.Border)
 
     Skin.UIDropDownMenuTemplate(_G.FriendsFriendsFrameDropDown)
-    _G.FriendsFriendsFrame.ScrollFrameBorder:SetBackdrop(nil)
+    Util.HideNineSlice(FriendsFriendsFrame.ScrollFrameBorder)
     Skin.FriendsFrameScrollFrame(_G.FriendsFriendsScrollFrame)
-    Skin.UIPanelButtonTemplate(_G.FriendsFriendsFrame.SendRequestButton)
-    Skin.UIPanelButtonTemplate(_G.FriendsFriendsFrame.CloseButton)
+    Skin.UIPanelButtonTemplate(FriendsFriendsFrame.SendRequestButton)
+    Skin.UIPanelButtonTemplate(FriendsFriendsFrame.CloseButton)
 
 
 

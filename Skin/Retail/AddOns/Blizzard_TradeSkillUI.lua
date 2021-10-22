@@ -153,7 +153,7 @@ do --[[ AddOns\Blizzard_TradeSkillUI.xml ]]
             Util.Mixin(GuildFrame, Hook.TradeSkillGuildListingMixin)
             Skin.TranslucentFrameTemplate(GuildFrame)
             Skin.UIPanelCloseButton(GuildFrame.CloseButton)
-            GuildFrame.Container:SetBackdrop(nil)
+            Util.HideNineSlice(GuildFrame.Container)
             Skin.HybridScrollBarTemplate(GuildFrame.Container.ScrollFrame.scrollBar)
 
             local Contents = ScrollFrame.Contents

@@ -812,7 +812,7 @@ function private.AddOns.Blizzard_Communities()
     Skin.TranslucentFrameTemplate(_G.CommunitiesGuildLogFrame)
     local close1, container, close2 = _G.CommunitiesGuildLogFrame:GetChildren()
     Skin.UIPanelCloseButton(close1) -- BlizzWTF: close1 and close2 have the same global name
-    container:SetBackdrop(nil)
+    Util.HideNineSlice(container)
     Skin.MinimalScrollFrameTemplate(container.ScrollFrame)
     Skin.UIPanelButtonTemplate(close2)
 

@@ -492,7 +492,7 @@ function private.AddOns.Blizzard_AchievementUI()
     ----------------
     -- Categories --
     ----------------
-    _G.AchievementFrameCategories:SetBackdrop(nil)
+    Util.HideNineSlice(_G.AchievementFrameCategories)
     Skin.HybridScrollBarTemplate(_G.AchievementFrameCategoriesContainerScrollBar)
 
 
@@ -563,7 +563,7 @@ function private.AddOns.Blizzard_AchievementUI()
     for _, unit in next, {"Player", "Friend"} do
         local summery = _G["AchievementFrameComparisonSummary"..unit]
         summery:SetHeight(24)
-        summery:SetBackdrop(nil)
+        Util.HideNineSlice(summery)
         _G["AchievementFrameComparisonSummary"..unit.."Background"]:Hide()
         Skin.AchievementHeaderStatusBarTemplate(summery.statusBar)
         summery.statusBar:ClearAllPoints()

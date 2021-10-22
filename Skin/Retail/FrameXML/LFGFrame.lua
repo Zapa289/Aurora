@@ -30,7 +30,7 @@ do --[[ FrameXML\LFGFrame.lua ]]
             role = "DAMAGER"
         end
 
-        _G.LFGDungeonReadyDialog:SetBackdrop(nil)
+        Util.HideNineSlice(_G.LFGDungeonReadyDialog)
         if not hasResponded then
             if subtypeID == _G.LFG_SUBTYPEID_RAID then
                 _G.LFGDungeonReadyDialog.Border:SetBackdropBorderColor(Color.yellow, 1)

@@ -140,6 +140,13 @@ function Util.GetNineSlicePiece(container, pieceName)
         return piece, true
     end
 end
+function Util.HideNineSlice(frame)
+    if frame.NineSlice then
+        frame.NineSlice:Hide()
+    else
+        frame:SetBackdrop(nil)
+    end
+end
 
 local tempMixin = {}
 function Util.Mixin(table, ...)

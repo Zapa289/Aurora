@@ -38,6 +38,7 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
     <!--Script file="..\SharedXML\PredictedSetting.lua"/-->
     <!--Script file="..\SharedXML\SecureUtil.lua"/-->
     <!--Script file="..\SharedXML\TimeUtil.lua"/-->
+    <!--Script file="..\SharedXML\NineSliceLayouts.lua"/-->
     <Script file="..\SharedXML\NineSlice.lua"/>
     <!--Script file="..\SharedXML\EasingUtil.lua"/-->
     <!--Script file="..\SharedXML\BindingUtil.lua"/-->
@@ -68,7 +69,7 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
     <!--Script file="..\SharedXML\Frame\EventFrame.lua"/-->
     <!--Script file="..\SharedXML\Frame\EventButton.lua"/-->
     <!--Script file="..\SharedXML\Frame\EventEditBox.lua"/-->
-    <!--Script file="..\SharedXML\DataProvider.lua"/-->
+    <!--Script file="..\SharedXML\DataProviders.lua"/-->
     <!--Script file="..\SharedXML\Interpolator.lua"/-->
     <!--Script file="..\SharedXML\Scroll\ScrollUtil.lua"/-->
     <!--Script file="..\SharedXML\Scroll\ScrollController.lua"/-->
@@ -76,6 +77,7 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
     <Script file="..\SharedXML\Scroll\ScrollBar.lua"/>
     <Script file="..\SharedXML\Scroll\ScrollTemplates.lua"/>
     <!--Script file="..\SharedXML\StringUtil.lua"/-->
+    <!--Script file="..\SharedXML\TypeUtil.lua"/-->
     <!--Script file="..\SharedXML\Dump.lua"/-->
     <!--Script file="MixinUtil.lua"/-->
 
@@ -122,7 +124,7 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
     <!--Script file="ObjectAPI\CovenantCalling.lua"/-->
 
     <!--## add new modules below here-->
-    <Script file="..\SharedXML\Backdrop.lua"/>
+    <!--Script file="..\SharedXML\Backdrop.lua"/-->
     <Script file="ChatBubbleTemplates.lua"/>
     <!--Script file="WorldFrame.lua"/-->
     <Script file="UIParent.lua"/>
@@ -154,14 +156,14 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
     <Script file="..\SharedXML\HelpTip.lua"/>
     <!--Script file="ExtraAbilityContainer.lua"/-->
     <!--Script file="CurrencyContainer.lua"/-->
-    <!--## IME.lua needs to be loaded after UIParent.lua-->
-    <!--Script file="..\SharedXML\IME.lua"/-->
     <Script file="MoneyFrame.lua"/>
 
     <Script file="MoneyInputFrame.lua"/>
 
     <Script file="..\SharedXML\SecureUIPanelTemplates.lua"/>
     <Script file="..\SharedXML\SharedUIPanelTemplates.lua"/>
+    <!--## IME.lua needs to be loaded after UIParent.lua-->
+    <!--Script file="..\SharedXML\IME.lua"/-->
     <Script file="..\SharedXML\SharedBasicControls.lua"/>
     <!--Script file="..\SharedXML\CustomBindingButtonTemplate.lua"/-->
     <!--Script file="CustomBindingManager.lua"/-->

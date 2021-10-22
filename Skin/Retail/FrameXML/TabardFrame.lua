@@ -45,7 +45,7 @@ function private.FrameXML.TabardFrame()
     Skin.NavButtonNext(_G.TabardCharacterModelRotateRightButton)
     _G.TabardCharacterModelRotateRightButton:SetPoint("TOPLEFT", _G.TabardCharacterModelRotateLeftButton, "TOPRIGHT", 1, 0)
 
-    _G.TabardFrameCostFrame:SetBackdrop(nil)
+    Util.HideNineSlice(_G.TabardFrameCostFrame)
     Skin.SmallMoneyFrameTemplate(_G.TabardFrameCostMoneyFrame)
 
     _G.TabardFrameCustomizationBorder:Hide()

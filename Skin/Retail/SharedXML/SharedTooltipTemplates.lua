@@ -10,6 +10,7 @@ local Hook, Skin = Aurora.Hook, Aurora.Skin
 
 do --[[ FrameXML\SharedTooltipTemplates.lua ]]
     function Hook.SharedTooltip_SetBackdropStyle(self, style)
+        if private.isPatch then return end
         if not self.IsEmbedded then
             Skin.FrameTypeFrame(self)
         end
@@ -18,7 +19,11 @@ end
 
 do --[[ FrameXML\SharedTooltipTemplates.xml ]]
     function Skin.SharedTooltipTemplate(GameTooltip)
-        Skin.FrameTypeFrame(GameTooltip)
+        if private.isPatch then
+            Skin.NineSlicePanelTemplate(GameTooltip.NineSlice)
+        else
+            Skin.FrameTypeFrame(GameTooltip)
+        end
     end
     function Skin.SharedNoHeaderTooltipTemplate(GameTooltip)
         Skin.SharedTooltipTemplate(GameTooltip)

@@ -45,6 +45,7 @@ do --[[ SharedXML\NineSlice.lua ]]
         InsetFrameTemplate = HideFrame,
         BFAMissionHorde = BasicFrame,
         BFAMissionAlliance = BasicFrame,
+        --CovenantMissionFrame = BasicFrame,
         GenericMetal = BasicFrame,
         Dialog = function(Frame)
             BasicFrame(Frame)
@@ -59,7 +60,15 @@ do --[[ SharedXML\NineSlice.lua ]]
         Runeforge = BasicFrame,
         AdventuresMissionComplete = InsetFrame,
         CharacterCreateDropdown = BasicFrame,
+        --ChatBubble = BasicFrame,
         UniqueCornersLayout = BasicFrame,
+        --GMChatRequest = BasicFrame,
+        TooltipDefaultLayout = BasicFrame,
+        --TooltipAzeriteLayout = BasicFrame,
+        --TooltipCorruptedLayout = BasicFrame,
+        --TooltipMawLayout = BasicFrame,
+        --TooltipGluesLayout = BasicFrame,
+        --IdenticalCornersLayoutNoCenter = BasicFrame,
         IdenticalCornersLayout = BasicFrame,
 
         -- Blizzard_OrderHallTalents

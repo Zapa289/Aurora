@@ -104,7 +104,12 @@ function private.FrameXML.GossipFrame()
     NPCFriendshipStatusBar:GetRegions():Hide()
     NPCFriendshipStatusBar.icon:SetPoint("TOPLEFT", -20, 7)
     for i = 1, 4 do
-        local notch = _G["NPCFriendshipStatusBarNotch"..i]
+        local notch
+        if private.isPatch then
+            notch = _G.NPCFriendshipStatusBar["Notch"..i]
+        else
+            notch = _G["NPCFriendshipStatusBarNotch"..i]
+        end
         notch:SetColorTexture(Color.button:GetRGB())
         notch:SetSize(1, 16)
     end

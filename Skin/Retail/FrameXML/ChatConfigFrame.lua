@@ -53,7 +53,17 @@ do --[[ FrameXML\ChatConfigFrame.xml ]]
         Skin.ConfigCategoryButtonTemplate(Button)
     end
     function Skin.ChatConfigBoxTemplate(Frame)
-        Frame:SetBackdrop(nil)
+        Util.HideNineSlice(Frame)
+    end
+    function Skin.ChatConfigBorderBoxTemplate(Frame)
+        Skin.TooltipBorderBackdropTemplate(Frame)
+        Frame.NineSlice:SetBackdropBorderColor(Color.button)
+        Frame.NineSlice:SetBackdropOption("offsets", {
+            left = 3,
+            right = 2,
+            top = 2,
+            bottom = 2,
+        })
     end
     function Skin.ChatConfigBoxWithHeaderTemplate(Frame)
         Skin.ChatConfigBoxTemplate(Frame)
@@ -71,17 +81,13 @@ do --[[ FrameXML\ChatConfigFrame.xml ]]
     function Skin.ChatConfigSmallCheckButtonTemplate(CheckButton)
         Skin.ChatConfigBaseCheckButtonTemplate(CheckButton)
     end
-    function Skin.ChatConfigCheckBoxTemplate(Frame)
-        Base.SetBackdrop(Frame, Color.frame)
-        Frame:SetBackdropBorderColor(Color.button)
-        Frame:SetBackdropOption("offsets", {
-            left = 3,
-            right = 2,
-            top = 2,
-            bottom = 2,
-        })
 
+    function Skin.ChatConfigCheckBoxTemplate(Frame)
+        Skin.ChatConfigBorderBoxTemplate(Frame)
         Skin.ChatConfigCheckButtonTemplate(Frame.CheckButton)
+    end
+    function Skin.ChatConfigCheckBoxSmallTemplate(Frame)
+        Skin.ChatConfigCheckBoxTemplate(Frame)
     end
     function Skin.ChatConfigCheckBoxWithSwatchTemplate(Frame)
         Skin.ChatConfigCheckBoxTemplate(Frame)
@@ -95,15 +101,7 @@ do --[[ FrameXML\ChatConfigFrame.xml ]]
         Frame.ArtOverlay.GrayedOut:SetPoint("TOPLEFT")
     end
     function Skin.ChatConfigSwatchTemplate(Frame)
-        Base.SetBackdrop(Frame, Color.frame)
-        Frame:SetBackdropBorderColor(Color.button)
-        Frame:SetBackdropOption("offsets", {
-            left = 3,
-            right = 2,
-            top = 2,
-            bottom = 2,
-        })
-
+        Skin.ChatConfigBorderBoxTemplate(Frame)
         Skin.ColorSwatchTemplate(_G[Frame:GetName().."ColorSwatch"])
     end
     function Skin.ChatConfigTabTemplate(Button)
@@ -156,6 +154,9 @@ function private.FrameXML.ChatConfigFrame()
     Skin.ConfigCategoryButtonTemplate(_G.ChatConfigCategoryFrameButton2)
     Skin.ConfigCategoryButtonTemplate(_G.ChatConfigCategoryFrameButton3)
     Skin.ConfigCategoryButtonTemplate(_G.ChatConfigCategoryFrameButton4)
+    Skin.ConfigCategoryButtonTemplate(_G.ChatConfigCategoryFrameButton5)
+    Skin.ConfigCategoryButtonTemplate(_G.ChatConfigCategoryFrameButton6)
+    Skin.ConfigCategoryButtonTemplate(_G.ChatConfigCategoryFrameButton7)
     Util.Mixin(ChatConfigFrame.ChatTabManager.tabPool, Hook.ObjectPoolMixin)
     Skin.ChatConfigBoxTemplate(_G.ChatConfigBackgroundFrame)
 
@@ -175,7 +176,19 @@ function private.FrameXML.ChatConfigFrame()
     ChatConfigFrame.DefaultButton:SetPoint("BOTTOMLEFT", 10, 10)
     Skin.UIPanelButtonTemplate(ChatConfigFrame.RedockButton)
     ChatConfigFrame.RedockButton:SetPoint("BOTTOMLEFT", ChatConfigFrame.DefaultButton, "BOTTOMRIGHT", 5, 0)
+    if private.isPatch then
+        Skin.UIPanelButtonTemplate(ChatConfigFrame.ToggleChatButton)
+        ChatConfigFrame.ToggleChatButton:SetPoint("BOTTOMLEFT", ChatConfigFrame.RedockButton, "BOTTOMRIGHT", 5, 0)
+    end
+
     Skin.UIPanelButtonTemplate(_G.CombatLogDefaultButton)
+
+    Skin.UIPanelButtonTemplate(_G.TextToSpeechDefaultButton)
+    if private.isPatch then
+        Skin.UICheckButtonTemplate(_G.TextToSpeechCharacterSpecificButton)
+        _G.TextToSpeechCharacterSpecificButton:SetPoint("BOTTOMLEFT", _G.TextToSpeechDefaultButton, "BOTTOMRIGHT", 5, 0)
+    end
+
     --Skin.UIPanelButtonTemplate(_G.ChatConfigFrameCancelButton) -- BlizzWTF: Not used?
     Skin.UIPanelButtonTemplate(_G.ChatConfigFrameOkayButton)
     _G.ChatConfigFrameOkayButton:ClearAllPoints()
@@ -209,25 +222,29 @@ function private.FrameXML.ChatConfigFrame()
 
     -- Colors --
     Skin.ChatConfigBoxWithHeaderTemplate(_G.CombatConfigColorsUnitColors)
-    _G.CombatConfigColorsHighlighting:SetBackdrop(nil)
+    Util.HideNineSlice(_G.CombatConfigColorsHighlighting)
     Skin.ChatConfigSmallCheckButtonTemplate(_G.CombatConfigColorsHighlightingLine)
     Skin.ChatConfigSmallCheckButtonTemplate(_G.CombatConfigColorsHighlightingAbility)
     Skin.ChatConfigSmallCheckButtonTemplate(_G.CombatConfigColorsHighlightingDamage)
     Skin.ChatConfigSmallCheckButtonTemplate(_G.CombatConfigColorsHighlightingSchool)
 
-    _G.CombatConfigColorsColorizeUnitName:SetBackdrop(nil)
+    Util.HideNineSlice(_G.CombatConfigColorsColorizeUnitName)
     Skin.ChatConfigCheckButtonTemplate(_G.CombatConfigColorsColorizeUnitNameCheck)
-    _G.CombatConfigColorsColorizeSpellNames:SetBackdrop(nil)
+
+    Util.HideNineSlice(_G.CombatConfigColorsColorizeSpellNames)
     Skin.ChatConfigCheckButtonTemplate(_G.CombatConfigColorsColorizeSpellNamesCheck)
     Skin.ChatConfigSmallCheckButtonTemplate(_G.CombatConfigColorsColorizeSpellNamesSchoolColoring)
     Skin.ColorSwatchTemplate(_G.CombatConfigColorsColorizeSpellNamesColorSwatch)
-    _G.CombatConfigColorsColorizeDamageNumber:SetBackdrop(nil)
+
+    Util.HideNineSlice(_G.CombatConfigColorsColorizeDamageNumber)
     Skin.ChatConfigCheckButtonTemplate(_G.CombatConfigColorsColorizeDamageNumberCheck)
     Skin.ChatConfigSmallCheckButtonTemplate(_G.CombatConfigColorsColorizeDamageNumberSchoolColoring)
     Skin.ColorSwatchTemplate(_G.CombatConfigColorsColorizeDamageNumberColorSwatch)
-    _G.CombatConfigColorsColorizeDamageSchool:SetBackdrop(nil)
+
+    Util.HideNineSlice(_G.CombatConfigColorsColorizeDamageSchool)
     Skin.ChatConfigCheckButtonTemplate(_G.CombatConfigColorsColorizeDamageSchoolCheck)
-    _G.CombatConfigColorsColorizeEntireLine:SetBackdrop(nil)
+
+    Util.HideNineSlice(_G.CombatConfigColorsColorizeEntireLine)
     Skin.ChatConfigCheckButtonTemplate(_G.CombatConfigColorsColorizeEntireLineCheck)
     Skin.UIRadioButtonTemplate(_G.CombatConfigColorsColorizeEntireLineBySource)
     Skin.UIRadioButtonTemplate(_G.CombatConfigColorsColorizeEntireLineByTarget)

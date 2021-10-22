@@ -8,7 +8,7 @@ if not private.isRetail then return end
 local Aurora = private.Aurora
 local Base = Aurora.Base
 local Hook, Skin = Aurora.Hook, Aurora.Skin
-local Color = Aurora.Color
+local Color, Util = Aurora.Color, Aurora.Util
 
 
 -- local constants
@@ -95,7 +95,7 @@ do --[[ AddOns\Blizzard_Calendar.xml ]]
         arrow:SetPoint("RIGHT", 2, 0)
     end
     function Skin.CalendarEventInviteListTemplate(Frame)
-        Frame:SetBackdrop(nil)
+        Util.HideNineSlice(Frame)
         local name = Frame:GetName()
         Skin.HybridScrollBarTemplate(_G[name.."ScrollFrameScrollBar"])
         Skin.CalendarEventInviteSortButtonTemplate(_G[name.."NameSortButton"])
@@ -245,7 +245,7 @@ function private.AddOns.Blizzard_Calendar()
     ----------------
     Skin.DialogBorderDarkTemplate(_G.CalendarViewEventFrame.Border)
     Skin.DialogHeaderTemplate(_G.CalendarViewEventFrame.Header)
-    _G.CalendarViewEventDescriptionContainer:SetBackdrop(nil)
+    Util.HideNineSlice(_G.CalendarViewEventDescriptionContainer)
     Skin.CalendarEventDescriptionScrollFrame(_G.CalendarViewEventDescriptionScrollFrame)
     _G.CalendarViewEventDivider:Hide()
     Skin.CalendarViewEventRSVPButtonTemplate(_G.CalendarViewEventAcceptButton)
@@ -270,7 +270,7 @@ function private.AddOns.Blizzard_Calendar()
     Skin.UIDropDownMenuTemplate(_G.CalendarCreateEventAMPMDropDown)
     Skin.UIDropDownMenuTemplate(_G.CalendarCreateEventDifficultyOptionDropDown)
     Skin.UIDropDownMenuTemplate(_G.CalendarCreateEventCommunityDropDown)
-    _G.CalendarCreateEventDescriptionContainer:SetBackdrop(nil)
+    Util.HideNineSlice(_G.CalendarCreateEventDescriptionContainer)
     Skin.CalendarEventDescriptionScrollFrame(_G.CalendarCreateEventDescriptionScrollFrame)
     _G.CalendarCreateEventDivider:Hide()
     Skin.UICheckButtonTemplate(_G.CalendarCreateEventAutoApproveCheck)
