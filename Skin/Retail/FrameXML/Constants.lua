@@ -62,5 +62,17 @@ uiTextureKits.Ardenweald = uiTextureKits.Fey
 uiTextureKits.Revendreth = uiTextureKits.Venthyr
 private.uiTextureKits = uiTextureKits
 
+private.CLASS_BACKGROUND_SETTINGS = {
+	["DEFAULT"] = { desaturation = 0.5, alpha = 0.25 },
+	["DEATHKNIGHT"] = { desaturation = 0.5, alpha = 0.30 },
+	["DEMONHUNTER"] = { desaturation = 0.5, alpha = 0.30 },
+	["HUNTER"] = { desaturation = 0.5, alpha = 0.45 },
+	["MAGE"] = { desaturation = 0.5, alpha = 0.45 },
+	["PALADIN"] = { desaturation = 0.5, alpha = 0.21 },
+	["ROGUE"] = { desaturation = 0.5, alpha = 0.65 },
+	["SHAMAN"] = { desaturation = 0.5, alpha = 0.40 },
+	["WARLOCK"] = { desaturation = 0.5, alpha = 0.40 },
+}
+
 --function private.FrameXML.Constants()
 --end

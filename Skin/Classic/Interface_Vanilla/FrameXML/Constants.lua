@@ -41,5 +41,15 @@ private.atlasColors = {
     ["UI-Frame-Bar-Fill-Blue"] = Color.Create(0.0667, 0.4470, 0.8745),
 }
 
+private.CLASS_BACKGROUND_SETTINGS = {
+	["DEFAULT"] = { desaturation = 0.5, alpha = 0.25 },
+	["HUNTER"] = { desaturation = 0.5, alpha = 0.45 },
+	["MAGE"] = { desaturation = 0.5, alpha = 0.45 },
+	["PALADIN"] = { desaturation = 0.5, alpha = 0.21 },
+	["ROGUE"] = { desaturation = 0.5, alpha = 0.65 },
+	["SHAMAN"] = { desaturation = 0.5, alpha = 0.40 },
+	["WARLOCK"] = { desaturation = 0.5, alpha = 0.40 },
+}
+
 --function private.FrameXML.Constants()
 --end

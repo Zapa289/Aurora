@@ -131,8 +131,11 @@ function private.AddOns.Blizzard_InspectUI()
     classBG:SetPoint("TOPLEFT", bg)
     classBG:SetPoint("BOTTOM", bg)
     classBG:SetPoint("RIGHT", InspectFrame.Inset, 4, 0)
-    classBG:SetAlpha(0.5)
     InspectPaperDollFrame._classBG = classBG
+
+    local settings = private.CLASS_BACKGROUND_SETTINGS[private.charClass.token] or private.CLASS_BACKGROUND_SETTINGS["DEFAULT"];
+    classBG:SetDesaturation(settings.desaturation)
+    classBG:SetAlpha(settings.alpha)
 
     _G.InspectModelFrame:DisableDrawLayer("BACKGROUND")
     _G.InspectModelFrame.BackgroundOverlay:Hide()

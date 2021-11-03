@@ -133,7 +133,10 @@ function private.FrameXML.PaperDollFrame()
     classBG:SetPoint("TOPLEFT", bg)
     classBG:SetPoint("BOTTOM", bg)
     classBG:SetPoint("RIGHT", CharacterFrame.Inset, 4, 0)
-    classBG:SetAlpha(0.5)
+
+    local settings = private.CLASS_BACKGROUND_SETTINGS[private.charClass.token] or private.CLASS_BACKGROUND_SETTINGS["DEFAULT"];
+    classBG:SetDesaturation(settings.desaturation)
+    classBG:SetAlpha(settings.alpha)
 
     _G.PaperDollSidebarTabs:ClearAllPoints()
     _G.PaperDollSidebarTabs:SetPoint("BOTTOM", CharacterFrame.InsetRight, "TOP", 0, -3)

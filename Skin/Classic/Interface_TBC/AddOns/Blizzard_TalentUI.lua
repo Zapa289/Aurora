@@ -47,6 +47,7 @@ function private.AddOns.Blizzard_TalentUI()
     bl:Hide()
     br:Hide()
 
+    local settings = private.CLASS_BACKGROUND_SETTINGS[private.charClass.token] or private.CLASS_BACKGROUND_SETTINGS["DEFAULT"];
     local textures = {
         TopLeft = {
             point = "TOPLEFT",
@@ -67,13 +68,14 @@ function private.AddOns.Blizzard_TalentUI()
         },
     }
     for name, info in next, textures do
-        local tex = _G["PlayerTalentFrameBackground"..name]
+        local specBG = _G["PlayerTalentFrameBackground"..name]
         if info.point then
-            tex:SetPoint(info.point, bg)
+            specBG:SetPoint(info.point, bg)
         end
-        tex:SetSize(info.x, info.y)
-        tex:SetDrawLayer("BACKGROUND", 3)
-        tex:SetAlpha(0.7)
+        specBG:SetSize(info.x, info.y)
+        specBG:SetDrawLayer("BACKGROUND", 3)
+        specBG:SetDesaturation(settings.desaturation)
+        specBG:SetAlpha(settings.alpha)
     end
 
     _G.PlayerTalentFrameTitleText:ClearAllPoints()
