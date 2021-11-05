@@ -6,7 +6,7 @@ if not private.isRetail then return end
 
 --[[ Core ]]
 local Aurora = private.Aurora
-local Base, Skin = Aurora.Base, Aurora.Skin
+local Skin = Aurora.Skin
 local Color = Aurora.Color
 
 --do --[[ FrameXML\OptionsPanelTemplates.lua ]]
