@@ -23,6 +23,7 @@ local microButtonPrefix = [[Interface\Buttons\UI-MicroButton-]]
 local microButtonNames = {
     Quest = true,
     Socials = true,
+    LFG = true,
     MainMenu = true,
 }
 local function SetMicroButton(button, file, left, right, top, bottom)
@@ -254,7 +255,7 @@ function private.FrameXML.ActionBarController()
         SetMicroButton(_G.TalentMicroButton, [[Interface\Icons\Ability_Marksmanship]])
         SetMicroButton(_G.QuestLogMicroButton, "Quest")
         SetMicroButton(_G.SocialsMicroButton, "Socials")
-        SetMicroButton(_G.WorldMapMicroButton, [[Interface\WorldMap\WorldMap-Icon]], 0.21875, 0.6875, 0.109375, 0.8125)
+        SetMicroButton(_G.LFGMicroButton, "LFG")
         SetMicroButton(_G.MainMenuMicroButton, "MainMenu")
         SetMicroButton(_G.HelpMicroButton, [[Interface\Icons\INV_Misc_QuestionMark]])
 
@@ -264,7 +265,7 @@ function private.FrameXML.ActionBarController()
             _G.TalentMicroButton,
             _G.QuestLogMicroButton,
             _G.SocialsMicroButton,
-            _G.WorldMapMicroButton,
+            _G.LFGMicroButton,
             _G.MainMenuMicroButton,
             _G.HelpMicroButton,
         })
