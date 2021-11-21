@@ -1,7 +1,24 @@
-﻿## [9.0.5.0] ##
+﻿## [9.1.5.0] ##
+
+### Changed ###
+
+  * Updates for recent patch compatibility
+  * [classic] Tweak chat frame skin
+  * Tweak class and spec backdrops
+  * [tbc] Update inspect frame
+  * [retail] Update item upgrade frame
+
+### Fixed ###
+
+  * [classic] Bag frame background would not update after opening the keyring
+  * [tbc] Errors when opening the talent frame
+  * [retail] Browse groups button was not skinned in LFG list
+
+
+## [9.0.5.0] ##
 ### Added ###
 
-  * [bcc] Support for BC Classic
+  * [tbc] Support for BC Classic
   * [classic] Items in the loot frame now have quality colored borders
   * Skin for upgraded event trace frame
 
@@ -312,6 +329,7 @@
   * Error when opening azerite respec UI
 
 [Unreleased]: https://github.com/Haleth/Aurora/compare/master...develop
+[9.1.5.0]: https://github.com/Haleth/Aurora/compare/9.0.5.0...9.1.5.0
 [9.0.5.0]: https://github.com/Haleth/Aurora/compare/9.0.2.1...9.0.5.0
 [9.0.2.1]: https://github.com/Haleth/Aurora/compare/9.0.2.0...9.0.2.1
 [9.0.2.0]: https://github.com/Haleth/Aurora/compare/9.0.1.7...9.0.2.0
