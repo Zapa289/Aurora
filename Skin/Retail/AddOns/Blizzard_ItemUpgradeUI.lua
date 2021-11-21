@@ -8,26 +8,65 @@ if not private.isRetail then return end
 local Aurora = private.Aurora
 local Base = Aurora.Base
 local Hook, Skin = Aurora.Hook, Aurora.Skin
+local Util = Aurora.Util
 
 do --[[ AddOns\Blizzard_ItemUpgradeUI.lua ]]
-    function Hook.ItemUpgradeFrame_Update()
-        local ItemButton = _G.ItemUpgradeFrame.ItemButton
-        if not _G.GetItemUpgradeItemInfo() then
-            ItemButton.IconTexture:SetTexture([[Interface\PaperDoll\UI-Backpack-EmptySlot]])
+    Hook.ItemUpgradeMixin = {}
+    function Hook.ItemUpgradeMixin:Update(fromDropDown)
+        local UpgradeItemButton = self.UpgradeItemButton
+        if not self.upgradeInfo then
+            Hook.SetItemButtonQuality(UpgradeItemButton, _G.Enum.ItemQuality.Uncommon)
+
+            local tex = UpgradeItemButton:GetNormalTexture()
+            tex:SetAllPoints(UpgradeItemButton.icon)
+            Base.CropIcon(tex)
         end
-        Base.CropIcon(ItemButton.IconTexture)
+
+        Base.CropIcon(UpgradeItemButton:GetPushedTexture())
     end
 end
 
---do --[[ AddOns\Blizzard_ItemUpgradeUI.xml ]]
---end
+do --[[ AddOns\Blizzard_ItemUpgradeUI.xml ]]
+    function Skin.ItemUpgradeTooltipTemplate(GameTooltip)
+        Skin.SharedTooltipTemplate(GameTooltip)
+    end
+    function Skin.ItemUpgradePreviewTemplate(GameTooltip)
+        Skin.ItemUpgradeTooltipTemplate(GameTooltip)
+    end
+end
 
 function private.AddOns.Blizzard_ItemUpgradeUI()
-    _G.hooksecurefunc("ItemUpgradeFrame_Update", Hook.ItemUpgradeFrame_Update)
-
     local ItemUpgradeFrame = _G.ItemUpgradeFrame
-    Skin.ButtonFrameTemplate(ItemUpgradeFrame)
+    Util.Mixin(ItemUpgradeFrame, Hook.ItemUpgradeMixin)
+    Skin.PortraitFrameTemplate(ItemUpgradeFrame)
 
+    ItemUpgradeFrame.BottomBG:Hide()
+
+    ItemUpgradeFrame.BottomPanel_Flash:Hide()
+    ItemUpgradeFrame.IdleGlow:Hide()
+    ItemUpgradeFrame.Ring:Hide()
+
+    ItemUpgradeFrame.BottomBGShadow:Hide()
+    ItemUpgradeFrame.TopBG:Hide()
+    ItemUpgradeFrame.MicaFleckSheen:Hide()
+
+    local UpgradeItemButton = ItemUpgradeFrame.UpgradeItemButton
+    Skin.FrameTypeItemButton(UpgradeItemButton)
+    Base.CropIcon(UpgradeItemButton.EmptySlotGlow)
+    UpgradeItemButton.EmptySlotGlow:SetAllPoints(UpgradeItemButton.icon)
+    UpgradeItemButton.ButtonFrame:Hide()
+
+    Skin.UIDropDownMenuTemplate(ItemUpgradeFrame.ItemInfo.Dropdown)
+    Skin.ItemUpgradePreviewTemplate(ItemUpgradeFrame.LeftItemPreviewFrame)
+    Skin.ItemUpgradePreviewTemplate(ItemUpgradeFrame.RightItemPreviewFrame)
+
+    Skin.UIPanelButtonTemplate(ItemUpgradeFrame.UpgradeButton)
+    local glow = ItemUpgradeFrame.UpgradeButton.GlowAnim:GetAnimations()
+    glow:SetFromAlpha(0.0)
+    glow:SetToAlpha(0.2)
+
+    Skin.ThinGoldEdgeTemplate(ItemUpgradeFrame.PlayerCurrenciesBorder)
+    --[[
     local TextFrame = ItemUpgradeFrame.TextFrame
     TextFrame:GetRegions():Hide() -- BG
     TextFrame.Right:Hide()
@@ -36,7 +75,7 @@ function private.AddOns.Blizzard_ItemUpgradeUI()
     TextFrame.Top:Hide()
     TextFrame.Bottom:Hide()
 
-    local ItemButton = ItemUpgradeFrame.ItemButton
+    local ItemButton = ItemUpgradeFrame.UpgradeItemButton
     Base.CropIcon(ItemButton.IconTexture, ItemButton)
     ItemButton.Frame:Hide()
     Base.CropIcon(ItemButton:GetPushedTexture())
@@ -50,4 +89,5 @@ function private.AddOns.Blizzard_ItemUpgradeUI()
     Skin.ThinGoldEdgeTemplate(_G.ItemUpgradeFrameMoneyFrame)
     Skin.BackpackTokenTemplate(_G.ItemUpgradeFrameMoneyFrame.Currency)
     Skin.MagicButtonTemplate(_G.ItemUpgradeFrameUpgradeButton)
+    ]]
 end

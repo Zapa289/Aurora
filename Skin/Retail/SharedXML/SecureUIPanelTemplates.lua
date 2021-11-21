@@ -127,6 +127,9 @@ do --[[ FrameXML\SecureUIPanelTemplates.xml ]]
         Button.Left:SetAlpha(0)
         Button.Right:SetAlpha(0)
         Button.Middle:SetAlpha(0)
+        Button.Left:Hide()
+        Button.Right:Hide()
+        Button.Middle:Hide()
     end
     function Skin.UIPanelButtonNoTooltipResizeToFitTemplate(Button)
         Skin.UIPanelButtonNoTooltipTemplate(Button)
