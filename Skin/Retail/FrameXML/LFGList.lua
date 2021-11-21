@@ -318,6 +318,7 @@ function private.FrameXML.LFGList()
     Skin.HybridScrollBarTemplate(ApplicationViewer.ScrollFrame.scrollBar)
     Skin.LFGListMagicButtonTemplate(ApplicationViewer.RemoveEntryButton)
     Skin.LFGListMagicButtonTemplate(ApplicationViewer.EditButton)
+    Skin.LFGListMagicButtonTemplate(ApplicationViewer.BrowseGroupsButton)
 
     -- EntryCreation --
     local EntryCreation = LFGListFrame.EntryCreation
