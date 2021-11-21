@@ -7,11 +7,12 @@ if not private.isRetail then return end
 --[[ Core ]]
 local Aurora = private.Aurora
 local Hook, Skin = Aurora.Hook, Aurora.Skin
+local Color = Aurora.Color
 
 do --[[ FrameXML\SharedTooltipTemplates.lua ]]
-    function Hook.SharedTooltip_SetBackdropStyle(self, style)
-        if not self.IsEmbedded then
-            Skin.FrameTypeFrame(self)
+    function Hook.SharedTooltip_SetBackdropStyle(self, style, embedded)
+        if not (embedded or self.IsEmbedded) then
+            self.NineSlice:SetCenterColor(Color.frame:GetRGB());
         end
     end
 end
@@ -28,5 +29,5 @@ end
 function private.SharedXML.SharedTooltipTemplates()
     if private.disabled.tooltips then return end
 
-    --_G.hooksecurefunc("SharedTooltip_SetBackdropStyle", Hook.SharedTooltip_SetBackdropStyle)
+    _G.hooksecurefunc("SharedTooltip_SetBackdropStyle", Hook.SharedTooltip_SetBackdropStyle)
 end

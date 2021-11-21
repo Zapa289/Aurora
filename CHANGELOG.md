@@ -13,6 +13,7 @@
   * [classic] Bag frame background would not update after opening the keyring
   * [tbc] Errors when opening the talent frame
   * [retail] Browse groups button was not skinned in LFG list
+  * [retail] Tooltips would revert to old skin
 
 
 ## [9.0.5.0] ##
