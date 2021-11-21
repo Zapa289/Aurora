@@ -43,10 +43,6 @@ function private.FrameXML.DressUpFrames()
     TransmogAndMountDressupFrame.ShowMountCheckButton:ClearAllPoints()
     TransmogAndMountDressupFrame.ShowMountCheckButton:SetPoint("BOTTOMRIGHT", -5, 5)
 
-    if not private.isPatch then
-        Skin.UIPanelButtonTemplate(TransmogAndMountDressupFrame.ResetButton)
-    end
-
 
     ------------------
     -- DressUpFrame --
