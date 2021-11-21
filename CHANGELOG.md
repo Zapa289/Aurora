@@ -7,6 +7,7 @@
   * Tweak class and spec backdrops
   * [tbc] Update inspect frame
   * [retail] Update item upgrade frame
+  * [retail] Tweak create channel popup
 
 ### Fixed ###
 
@@ -14,6 +15,7 @@
   * [tbc] Errors when opening the talent frame
   * [retail] Browse groups button was not skinned in LFG list
   * [retail] Tooltips would revert to old skin
+  * [retail] Channel headers in the chat channels frame were not skinned
 
 
 ## [9.0.5.0] ##
