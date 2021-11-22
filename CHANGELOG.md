@@ -8,6 +8,7 @@
   * [tbc] Update inspect frame
   * [retail] Update item upgrade frame
   * [retail] Tweak create channel popup
+  * [retail] Update dress up frame
 
 ### Fixed ###
 
