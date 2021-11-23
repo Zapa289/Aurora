@@ -1,4 +1,7 @@
 ﻿## [9.1.5.0] ##
+### Added ###
+
+  * [tbc] LFG frame skin
 
 ### Changed ###
 
@@ -17,6 +20,7 @@
   * [retail] Browse groups button was not skinned in LFG list
   * [retail] Tooltips would revert to old skin
   * [retail] Channel headers in the chat channels frame were not skinned
+  * [retail] PvP ready popup background was not aligned
 
 
 ## [9.0.5.0] ##
