@@ -7,6 +7,7 @@ if not private.isClassic then return end
 --[[ Core ]]
 local Aurora = private.Aurora
 local Hook, Skin = Aurora.Hook, Aurora.Skin
+local Util = Aurora.Util
 
 do --[[ FrameXML\AudioOptionsPanels.lua ]]
     function Hook.AudioOptionsVoicePanel_InitializeCommunicationModeUI(self)
@@ -78,7 +79,7 @@ function private.FrameXML.AudioOptionsPanels()
 
     local TestInputDevice = AudioOptionsVoicePanel.TestInputDevice
     Skin.OptionsButtonTemplate(TestInputDevice.ToggleTest)
-    TestInputDevice.VUMeter:SetBackdrop(nil)
+    Util.HideNineSlice(TestInputDevice.VUMeter)
     Skin.FrameTypeStatusBar(TestInputDevice.VUMeter.Status)
 
     Skin.OptionsDropdownTemplate(AudioOptionsVoicePanel.ChatModeDropdown)

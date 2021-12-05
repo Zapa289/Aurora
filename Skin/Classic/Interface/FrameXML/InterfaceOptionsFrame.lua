@@ -35,7 +35,7 @@ function private.FrameXML.InterfaceOptionsFrame()
 
     Skin.OptionsFrameListTemplate(_G.InterfaceOptionsFrameCategories)
     Skin.OptionsFrameListTemplate(_G.InterfaceOptionsFrameAddOns)
-    Base.SetBackdrop(_G.InterfaceOptionsFramePanelContainer, Color.frame)
+    Skin.TooltipBorderBackdropTemplate(_G.InterfaceOptionsFramePanelContainer)
 
     Skin.OptionsFrameTabButtonTemplate(_G.InterfaceOptionsFrameTab1)
     Skin.OptionsFrameTabButtonTemplate(_G.InterfaceOptionsFrameTab2)

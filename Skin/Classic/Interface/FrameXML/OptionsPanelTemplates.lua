@@ -37,7 +37,7 @@ do --[[ FrameXML\OptionsPanelTemplates.xml ]]
         Skin.UIDropDownMenuTemplate(Frame)
     end
     function Skin.OptionsBoxTemplate(Frame)
-        Base.SetBackdrop(Frame, Color.frame)
+        Skin.TooltipBorderBackdropTemplate(Frame)
     end
 end
 

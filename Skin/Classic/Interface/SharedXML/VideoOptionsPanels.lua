@@ -42,7 +42,7 @@ function private.SharedXML.VideoOptionsPanels()
     -------------
     -- Display --
     -------------
-    Base.SetBackdrop(_G.Display_, Color.frame)
+    Skin.TooltipBorderBackdropTemplate(_G.Display_)
 
     -- Column A
     Skin.VideoOptionsDropDownMenuTemplate(_G.Display_DisplayModeDropDown)
@@ -60,7 +60,7 @@ function private.SharedXML.VideoOptionsPanels()
     --------------
     -- Graphics --
     --------------
-    Base.SetBackdrop(_G.Graphics_, Color.frame)
+    Skin.TooltipBorderBackdropTemplate(_G.Graphics_)
 
     Skin.VideoOptionsSliderTemplate(_G.Graphics_Quality)
 
@@ -82,7 +82,7 @@ function private.SharedXML.VideoOptionsPanels()
     ----------------
     -- Raid Panel --
     ----------------
-    Base.SetBackdrop(_G.RaidGraphics_, Color.frame)
+    Skin.TooltipBorderBackdropTemplate(_G.RaidGraphics_)
 
     Skin.VideoOptionsSliderTemplate(_G.RaidGraphics_Quality)
 
@@ -110,13 +110,13 @@ function private.SharedXML.VideoOptionsPanels()
     --------------------
     -- Column A
     Skin.AdvancedVideoOptionsDropDownMenuTemplate(_G.Advanced_BufferingDropDown)
-        Skin.AdvancedVideoOptionsDropDownMenuTemplate(_G.Advanced_FilteringDropDown)
-        Skin.AdvancedVideoOptionsDropDownMenuTemplate(_G.Advanced_RTShadowQualityDropDown)
+    Skin.AdvancedVideoOptionsDropDownMenuTemplate(_G.Advanced_FilteringDropDown)
+    Skin.AdvancedVideoOptionsDropDownMenuTemplate(_G.Advanced_RTShadowQualityDropDown)
     Skin.AdvancedVideoOptionsDropDownMenuTemplate(_G.Advanced_MultisampleAntiAliasingDropDown)
     Skin.AdvancedVideoOptionsDropDownMenuTemplate(_G.Advanced_MultisampleAlphaTest)
     Skin.AdvancedVideoOptionsDropDownMenuTemplate(_G.Advanced_PostProcessAntiAliasingDropDown)
     Skin.AdvancedVideoOptionsDropDownMenuTemplate(_G.Advanced_ResampleQualityDropDown)
-        Skin.AdvancedVideoOptionsDropDownMenuTemplate(_G.Advanced_GraphicsAPIDropDown)
+    Skin.AdvancedVideoOptionsDropDownMenuTemplate(_G.Advanced_GraphicsAPIDropDown)
     Skin.AdvancedVideoOptionsDropDownMenuTemplate(_G.Advanced_AdapterDropDown)
 
     Skin.VideoOptionsSliderTemplate(_G.Advanced_UIScaleSlider)
