@@ -237,6 +237,9 @@ eventFrame:SetScript("OnEvent", function(self, event, addonName)
                 Aurora[2].buttonsHaveGradient = _G.AuroraConfig.buttonsHaveGradient
             end
 
+            -- Trigger class colors update
+            _G.CUSTOM_CLASS_COLORS:NotifyChanges()
+
             -- Skin FrameXML
             for i = 1, #private.fileOrder do
                 local file = private.fileOrder[i]
