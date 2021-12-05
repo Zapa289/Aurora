@@ -35,7 +35,7 @@ jobs:
     - name: Create Mainline Package
       uses: BigWigsMods/packager@v1.0.3
       with:
-        args: -m .pkgmeta
+        args:
 
   tbc:
     needs: is_beta
@@ -47,7 +47,7 @@ jobs:
     - name: Create TBC Package
       uses: BigWigsMods/packager@v1.0.3
       with:
-        args: -m .pkgmeta-tbc
+        args: -g bcc -m .pkgmeta-tbc
 
   vanilla:
     needs: is_beta
@@ -59,4 +59,4 @@ jobs:
     - name: Create Vanilla Package
       uses: BigWigsMods/packager@v1.0.3
       with:
-        args: -m .pkgmeta-vanilla
+        args: -g classic -m .pkgmeta-vanilla
