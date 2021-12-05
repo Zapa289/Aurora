@@ -86,18 +86,7 @@ local bgTextures = {}
 for new, old in next, Util.NineSliceTextures do
     bgTextures[old] = new
 end
-local sides = {
-    l = {l=0, r=0.125, t=0, b=1, tileV = true, left="tl", right="bl"},
-    r = {l=0.125, r=0.25, t=0, b=1, tileV = true, left="tr", right="br"},
-    t = {l=0.25, r=0.375, t=0, b=1, tileH = true, left="tl", right="tr"},
-    b = {l=0.375, r=0.5, t=0, b=1, tileH = true, left="bl", right="br"},
-}
-local corners = {
-    tl = {l=0.5, r=0.625, t=0, b=1, point = "TOPLEFT", x="left", y="top"},
-    tr = {l=0.625, r=0.75, t=0, b=1, point = "TOPRIGHT", x="right", y="top"},
-    bl = {l=0.75, r=0.875, t=0, b=1, point = "BOTTOMLEFT", x="left", y="bottom"},
-    br = {l=0.875, r=1, t=0, b=1, point = "BOTTOMRIGHT", x="right", y="bottom"},
-}
+
 
 -- Blizzard methods
 local BackdropMixin do
