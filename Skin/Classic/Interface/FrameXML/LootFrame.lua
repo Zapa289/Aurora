@@ -234,6 +234,7 @@ function private.FrameXML.LootFrame()
     -----------------------
     -- MasterLooterFrame --
     -----------------------
+    --[[ TODO
     local MasterLooterFrame = _G.MasterLooterFrame
     for i = 1, 9 do
         select(i, MasterLooterFrame:GetRegions()):Hide()
@@ -279,4 +280,5 @@ function private.FrameXML.LootFrame()
             end
         end
     end)
+    ]]
 end
