@@ -14,6 +14,14 @@ jobs:
     if: contains(github.ref, 'beta') == false
     runs-on: ubuntu-latest
 
+    steps:
+    - name: Check
+      run: |
+        echo ${{ github.event }}
+        echo ${{ github.event_name }}
+        echo ${{ github.event_path }}
+        echo ${{ github.ref }}
+
   mainline:
     needs: is_release
     runs-on: ubuntu-latest
