@@ -54,12 +54,8 @@ do --[[ AddOns\Blizzard_IslandsQueueUI.xml ]]
         OverlayFrame.Bar:Hide()
         OverlayFrame.Spark:SetAlpha(0)
 
-
         local QuestReward = Frame.QuestReward
         Base.CropIcon(QuestReward.Icon, QuestReward)
-
-        Skin.FrameTypeFrame(QuestReward.Tooltip)
-        Skin.InternalEmbeddedItemTooltipTemplate(QuestReward.Tooltip.ItemTooltip)
     end
     function Skin.IslandsQueueFrameDifficultyButtonTemplate(Button)
     end
