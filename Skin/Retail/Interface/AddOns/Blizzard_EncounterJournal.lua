@@ -128,6 +128,17 @@ do --[[ AddOns\Blizzard_EncounterJournal.lua ]]
             end
         end
     end
+    do --[[ Blizzard_EncounterJournal ]]
+        Hook.RuneforgeLegendaryPowerLootJournalMixin = {}
+        function Hook.RuneforgeLegendaryPowerLootJournalMixin:OnPowerSet(oldPowerID, newPowerID)
+            if self.BackgroundOverlay:IsShown() then
+                self:SetBackdropBorderColor(Color.gray:GetRGB())
+            else
+                self:SetBackdropBorderColor(_G.LEGENDARY_ORANGE_COLOR:GetRGB())
+            end
+            self.BackgroundOverlay:Hide()
+        end
+    end
 end
 
 do --[[ AddOns\Blizzard_EncounterJournal.xml ]]
@@ -308,16 +319,16 @@ do --[[ AddOns\Blizzard_EncounterJournal.xml ]]
     end
     do --[[ Blizzard_LootJournal ]]
         function Skin.RuneforgeLegendaryPowerLootJournalTemplate(Button)
+            Util.Mixin(Button, Hook.RuneforgeLegendaryPowerLootJournalMixin)
             Base.CropIcon(Button.Icon)
 
-            Base.SetBackdrop(Button, Color.black, Color.frame.a)
+            Base.SetBackdrop(Button)
             Button:SetBackdropOption("offsets", {
                 left = 11,
                 right = 249,
                 top = 7,
                 bottom = 7,
             })
-            Button:SetBackdropBorderColor(_G.LEGENDARY_ORANGE_COLOR:GetRGB())
 
             Button.CircleMask:Hide()
             Button.Background:Hide()

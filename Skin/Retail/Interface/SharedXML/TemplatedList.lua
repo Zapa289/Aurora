@@ -16,8 +16,9 @@ do --[[ SharedXML\TemplatedList.lua ]]
             local template = select(i, ...)
             if Skin[template] then
                 -- Not sure why, but might sometimes get called before element frames are created
-                local isOK, numFrames = Util.SafeCall(list.GetNumElementFrames, list)
-                if isOK then
+                --local isOK, numFrames = Util.SafeCall(list.GetNumElementFrames, list)
+                local numFrames = list:GetNumElementFrames()
+                if numFrames then
                     for j = 1, numFrames do
                         obj = list:GetElementFrame(j)
                         if not obj._auroraSkinned then
@@ -52,7 +53,7 @@ do --[[ SharedXML\TemplatedList.xml ]]
     function Skin.TemplatedListTemplate(Frame)
         local selectedHighlight = Frame:GetSelectedHighlight()
         selectedHighlight:SetColorTexture(Color.highlight:GetRGB())
-        selectedHighlight:SetAlpha(0.5)
+        selectedHighlight:SetAlpha(0.2)
     end
 end
 
