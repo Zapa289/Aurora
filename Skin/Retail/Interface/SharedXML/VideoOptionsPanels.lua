@@ -6,9 +6,7 @@ if not private.isRetail then return end
 
 --[[ Core ]]
 local Aurora = private.Aurora
-local Base = Aurora.Base
 local Skin = Aurora.Skin
-local Color = Aurora.Color
 
 --do --[[ FrameXML\VideoOptionsPanels.lua ]]
 --end
@@ -42,7 +40,7 @@ function private.SharedXML.VideoOptionsPanels()
     -------------
     -- Display --
     -------------
-    Base.SetBackdrop(_G.Display_, Color.frame)
+    Skin.TooltipBorderBackdropTemplate(_G.Display_)
 
     -- Column A
     Skin.VideoOptionsDropDownMenuTemplate(_G.Display_DisplayModeDropDown)
@@ -63,7 +61,7 @@ function private.SharedXML.VideoOptionsPanels()
     --------------
     -- Graphics --
     --------------
-    Base.SetBackdrop(_G.Graphics_, Color.frame)
+    Skin.TooltipBorderBackdropTemplate(_G.Graphics_)
 
     Skin.VideoOptionsSliderTemplate(_G.Graphics_Quality)
 
@@ -89,7 +87,7 @@ function private.SharedXML.VideoOptionsPanels()
     ----------------
     -- Raid Panel --
     ----------------
-    Base.SetBackdrop(_G.RaidGraphics_, Color.frame)
+    Skin.TooltipBorderBackdropTemplate(_G.RaidGraphics_)
 
     Skin.VideoOptionsSliderTemplate(_G.RaidGraphics_Quality)
 
@@ -139,6 +137,7 @@ function private.SharedXML.VideoOptionsPanels()
     Skin.VideoOptionsSmallCheckButtonTemplate(_G.Advanced_MaxFPSBKCheckBox)
     Skin.VideoOptionsSliderTemplate(_G.Advanced_TargetFPSSlider)
     Skin.VideoOptionsSmallCheckButtonTemplate(_G.Advanced_TargetFPSCheckBox)
+    Skin.VideoOptionsSliderTemplate(_G.Advanced_ResampleSharpnessSlider)
     Skin.VideoOptionsSliderTemplate(_G.Advanced_ContrastSlider)
     Skin.VideoOptionsSliderTemplate(_G.Advanced_BrightnessSlider)
     Skin.VideoOptionsSliderTemplate(_G.Advanced_GammaSlider)

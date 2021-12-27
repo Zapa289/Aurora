@@ -6,9 +6,8 @@ if not private.isRetail then return end
 
 --[[ Core ]]
 local Aurora = private.Aurora
-local Base = Aurora.Base
 local Skin = Aurora.Skin
-local Color, Util = Aurora.Color, Aurora.Util
+local Util = Aurora.Util
 
 --do --[[ FrameXML\InterfaceOptionsFrame.lua ]]
 --end
@@ -20,6 +19,7 @@ function private.FrameXML.InterfaceOptionsFrame()
     local InterfaceOptionsFrame = _G.InterfaceOptionsFrame
     Skin.DialogBorderTemplate(InterfaceOptionsFrame.Border)
     Skin.DialogHeaderTemplate(InterfaceOptionsFrame.Header)
+
     Skin.UIPanelButtonTemplate(_G.InterfaceOptionsFrameCancel)
     Skin.UIPanelButtonTemplate(_G.InterfaceOptionsFrameOkay)
     Util.PositionRelative("BOTTOMRIGHT", InterfaceOptionsFrame, "BOTTOMRIGHT", -15, 15, 5, "Left", {
@@ -31,7 +31,7 @@ function private.FrameXML.InterfaceOptionsFrame()
 
     Skin.OptionsFrameListTemplate(_G.InterfaceOptionsFrameCategories)
     Skin.OptionsFrameListTemplate(_G.InterfaceOptionsFrameAddOns)
-    Base.SetBackdrop(_G.InterfaceOptionsFramePanelContainer, Color.frame)
+    Skin.TooltipBorderBackdropTemplate(_G.InterfaceOptionsFramePanelContainer)
 
     Skin.OptionsFrameTabButtonTemplate(_G.InterfaceOptionsFrameTab1)
     Skin.OptionsFrameTabButtonTemplate(_G.InterfaceOptionsFrameTab2)

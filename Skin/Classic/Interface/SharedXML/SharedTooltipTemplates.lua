@@ -39,6 +39,9 @@ do --[[ FrameXML\SharedTooltipTemplates.xml ]]
     function Skin.TooltipBackdropTemplate(Frame)
         if private.hasAPI then
             Skin.NineSlicePanelTemplate(Frame.NineSlice)
+
+            local r, g, b = Color.frame:GetRGB()
+            Frame:SetBackdropColor(r, g, b, Frame.backdropColorAlpha or 1)
         else
             Skin.FrameTypeFrame(Frame)
         end

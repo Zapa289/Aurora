@@ -40,10 +40,10 @@ function private.AddOns.Blizzard_CUFProfiles()
 
 
     Skin.CompactUnitFrameProfileDialogWithCoverTemplate(profiles.newProfileDialog)
-    local bd = _G.CreateFrame("Frame", nil, _G.CompactUnitFrameProfilesNewProfileDialogEditBox)
+    local bd = _G.CreateFrame("Frame", nil, profiles.newProfileDialog.editBox)
     bd:SetPoint("TOPLEFT", -5, 0)
     bd:SetPoint("BOTTOMRIGHT", 5, 0)
-    bd:SetFrameLevel(_G.CompactUnitFrameProfilesNewProfileDialogEditBox:GetFrameLevel())
+    bd:SetFrameLevel(profiles.newProfileDialog.editBox:GetFrameLevel())
     Base.SetBackdrop(bd, Color.button, 0.2)
     _G.CompactUnitFrameProfilesNewProfileDialogEditBoxLeft:Hide()
     _G.CompactUnitFrameProfilesNewProfileDialogEditBoxRight:Hide()

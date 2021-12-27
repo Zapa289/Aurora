@@ -6,9 +6,7 @@ if not private.isRetail then return end
 
 --[[ Core ]]
 local Aurora = private.Aurora
-local Base = Aurora.Base
 local Skin = Aurora.Skin
-local Color = Aurora.Color
 
 --do --[[ FrameXML\OptionsFrameTemplates.lua ]]
 --end
@@ -27,7 +25,7 @@ do --[[ FrameXML\OptionsFrameTemplates.xml ]]
     end
     function Skin.OptionsFrameListTemplate(Frame)
         local name = Frame:GetName()
-        Base.SetBackdrop(Frame, Color.frame)
+        Skin.TooltipBorderBackdropTemplate(Frame)
         Skin.UIPanelScrollBarTemplate(_G[name.."ListScrollBar"])
     end
     function Skin.OptionsListButtonTemplate(Button)
@@ -39,7 +37,7 @@ do --[[ FrameXML\OptionsFrameTemplates.xml ]]
         Skin.DialogHeaderTemplate(Frame.Header)
 
         Skin.OptionsFrameListTemplate(_G[name.."CategoryFrame"])
-        Base.SetBackdrop(_G[name.."PanelContainer"], Color.frame)
+        Skin.TooltipBorderBackdropTemplate(_G[name.."PanelContainer"])
     end
 end
 

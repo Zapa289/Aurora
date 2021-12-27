@@ -6,9 +6,8 @@ if not private.isRetail then return end
 
 --[[ Core ]]
 local Aurora = private.Aurora
-local Base = Aurora.Base
 local Skin = Aurora.Skin
-local Color, Util = Aurora.Color, Aurora.Util
+local Util = Aurora.Util
 
 --[[ do AddOns\Blizzard_BindingUI.lua
 end ]]
@@ -24,26 +23,32 @@ do --[[ AddOns\Blizzard_BindingUI.xml ]]
 end
 
 function private.AddOns.Blizzard_BindingUI()
+    ---------------------
+    -- KeyBindingFrame --
+    ---------------------
     local KeyBindingFrame = _G.KeyBindingFrame
-
     Skin.DialogBorderTemplate(KeyBindingFrame.BG)
     Skin.DialogHeaderTemplate(KeyBindingFrame.Header)
 
     Skin.UICheckButtonTemplate(KeyBindingFrame.characterSpecificButton)
-    Skin.UIPanelButtonTemplate(KeyBindingFrame.unbindButton)
-    Skin.UIPanelButtonTemplate(KeyBindingFrame.okayButton)
+    Skin.OptionsFrameListTemplate(KeyBindingFrame.categoryList)
+
+    Skin.UIPanelButtonTemplate(KeyBindingFrame.defaultsButton)
+    KeyBindingFrame.defaultsButton:SetPoint("BOTTOMLEFT", 15, 15)
+
+    Skin.TooltipBorderBackdropTemplate(KeyBindingFrame.bindingsContainer)
+
     Skin.UIPanelButtonTemplate(KeyBindingFrame.cancelButton)
+    Skin.UIPanelButtonTemplate(KeyBindingFrame.okayButton)
+    Skin.UIPanelButtonTemplate(KeyBindingFrame.unbindButton)
+    Skin.UIPanelButtonTemplate(KeyBindingFrame.quickKeybindButton)
     Util.PositionRelative("BOTTOMRIGHT", KeyBindingFrame, "BOTTOMRIGHT", -15, 15, 5, "Left", {
         KeyBindingFrame.cancelButton,
         KeyBindingFrame.okayButton,
         KeyBindingFrame.unbindButton
     })
 
-    Skin.UIPanelButtonTemplate(KeyBindingFrame.defaultsButton)
-    KeyBindingFrame.defaultsButton:SetPoint("BOTTOMLEFT", 15, 15)
 
-    Base.SetBackdrop(KeyBindingFrame.bindingsContainer, Color.frame)
-    Skin.OptionsFrameListTemplate(KeyBindingFrame.categoryList)
     Skin.FauxScrollFrameTemplate(KeyBindingFrame.scrollFrame)
     KeyBindingFrame.scrollFrame.scrollBorderTop:Hide()
     KeyBindingFrame.scrollFrame.scrollBorderBottom:Hide()
@@ -54,4 +59,16 @@ function private.AddOns.Blizzard_BindingUI()
     for i = 1, _G.KEY_BINDINGS_DISPLAYED do
         Skin.KeyBindingFrameBindingTemplate(KeyBindingFrame.keyBindingRows[i])
     end
+
+
+    -----------------------
+    -- QuickKeybindFrame --
+    -----------------------
+    local QuickKeybindFrame = _G.QuickKeybindFrame
+    Skin.DialogBorderTemplate(QuickKeybindFrame.BG)
+    Skin.DialogHeaderTemplate(QuickKeybindFrame.Header)
+    Skin.UICheckButtonTemplate(QuickKeybindFrame.characterSpecificButton)
+    Skin.UIPanelButtonTemplate(QuickKeybindFrame.defaultsButton)
+    Skin.UIPanelButtonTemplate(QuickKeybindFrame.cancelButton)
+    Skin.UIPanelButtonTemplate(QuickKeybindFrame.okayButton)
 end

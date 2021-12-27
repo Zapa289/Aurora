@@ -493,6 +493,9 @@ do --[[ SharedXML\SharedUIPanelTemplates.xml ]]
 
     function Skin.TooltipBackdropTemplate(Frame)
         Skin.NineSlicePanelTemplate(Frame.NineSlice)
+
+        local r, g, b = Color.frame:GetRGB()
+        Frame:SetBackdropColor(r, g, b, Frame.backdropColorAlpha or 1)
     end
 
     function Skin.TooltipBorderBackdropTemplate(Frame)

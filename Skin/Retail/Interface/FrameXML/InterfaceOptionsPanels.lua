@@ -152,14 +152,15 @@ function private.FrameXML.InterfaceOptionsPanels()
     Skin.InterfaceOptionsCheckButtonTemplate(_G.InterfaceOptionsAccessibilityPanelCinematicSubtitles)
     Skin.InterfaceOptionsCheckButtonTemplate(Accessibility.OverrideFadeOut)
     Skin.InterfaceOptionsCheckButtonTemplate(_G.InterfaceOptionsAccessibilityPanelQuestTextContrast)
-    Skin.InterfaceOptionsCheckButtonTemplate(_G.InterfaceOptionsAccessibilityPanelSpeechToText)
+    Skin.InterfaceOptionsCheckButtonTemplate(Accessibility.SpeechToTextCheckbox)
     Skin.InterfaceOptionsCheckButtonTemplate(_G.InterfaceOptionsAccessibilityPanelTextToSpeech)
     Skin.UIPanelButtonTemplate(_G.InterfaceOptionsAccessibilityPanelConfigureTextToSpeech)
     Skin.InterfaceOptionsCheckButtonTemplate(_G.InterfaceOptionsAccessibilityPanelRemoteTextToSpeech)
     Skin.UIDropDownMenuTemplate(Accessibility.RemoteTextToSpeechVoiceDropdown)
-    Skin.UIPanelButtonTemplate(_G.InterfaceOptionsAccessibilityPanelRemoteTextToSpeechVoicePlaySample)
+    Skin.UIPanelButtonTemplate(Accessibility.RemoteTextToSpeechVoicePlaySample)
     Skin.UIDropDownMenuTemplate(Accessibility.MotionSicknessDropdown)
     Skin.UIDropDownMenuTemplate(Accessibility.ShakeIntensityDropdown)
+    Skin.UIDropDownMenuTemplate(Accessibility.CursorSizeDropdown)
 
     ----------------
     -- Colorblind --
