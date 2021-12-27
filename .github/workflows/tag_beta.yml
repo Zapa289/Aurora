@@ -18,7 +18,7 @@ jobs:
         script: |
           const { owner, repo } = context.repo
           const regex = /\d+\.\d+\.\d+\.\d+/g;
-          if (regex.test("${{ github.event.head_commit.message }}")) {
+          if (regex.test(`${{ github.event.head_commit.message }}`)) {
             const run_id = "${{ github.run_id }}";
             await github.actions.cancelWorkflowRun({ owner, repo, run_id });
           } else {
