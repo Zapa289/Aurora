@@ -12,7 +12,7 @@ jobs:
 
     steps:
     - name: Check for release version
-      uses: actions/github-script@v2
+      uses: actions/github-script@v5
       id: check
       with:
         script: |
@@ -38,14 +38,6 @@ jobs:
       with:
         args: --no-color -q
         annotate: warning
-
-    - name: Check variables
-      run: |
-        echo ${{ github.event }}
-        echo ${{ github.event.head_commit.message }}
-        echo ${{ github.event_name }}
-        echo ${{ github.event_path }}
-        echo ${{ github.ref }}
 
     - name: Set beta
       uses: onemedical/action-general-autotag@main
