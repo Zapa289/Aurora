@@ -22,7 +22,7 @@ jobs:
             return "build"
           } else {
             const run_id = "${{ github.run_id }}";
-            await github.actions.cancelWorkflowRun({ owner, repo, run_id });
+            await github.rest.actions.cancelWorkflowRun({ owner, repo, run_id });
           }
         result-encoding: string
 
