@@ -253,6 +253,7 @@ function private.FrameXML.SpellBookFrame()
     --------------
     -- SideTabs --
     --------------
+    _G.SpellBookSideTabsFrame:SetPoint("BOTTOMRIGHT", 2, 0)
     for i = 1, _G.MAX_SKILLLINE_TABS do
         local tab = _G["SpellBookSkillLineTab"..i]
         Skin.SpellBookSkillLineTabTemplate(tab)

@@ -113,11 +113,20 @@ do -- BlizzWTF: These are not templates, but they should be
                 self._auroraIconBG:SetColorTexture(Color.black:GetRGB())
             end
         end
-        function Skin.SideTabTemplate(CheckButton)
-            _G.hooksecurefunc(CheckButton, "SetChecked", Hook_SetChecked)
-            CheckButton:GetRegions():Hide()
+        function Skin.SideTabTemplate(TabButton)
+            TabButton:GetRegions():Hide()
 
-            local icon = CheckButton.Icon or CheckButton:GetNormalTexture()
+            local CheckButton = TabButton.Button or TabButton
+            _G.hooksecurefunc(CheckButton, "SetChecked", Hook_SetChecked)
+
+            local icon = CheckButton.IconTexture
+            if icon then
+                CheckButton:SetNormalTexture("")
+                Base.CropIcon(CheckButton:GetPushedTexture())
+            else
+                icon = CheckButton.Icon or CheckButton:GetNormalTexture()
+            end
+
             CheckButton._auroraIconBG = Base.CropIcon(icon, CheckButton)
             Base.CropIcon(CheckButton:GetHighlightTexture())
             Base.CropIcon(CheckButton:GetCheckedTexture())
