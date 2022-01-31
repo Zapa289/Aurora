@@ -52,14 +52,6 @@ do --[[ FrameXML\SpellBookFrame.lua ]]
             end
         end
     end
-    function Hook.FormatProfession(frame, index)
-        if index then
-            local _, texture = _G.GetProfessionInfo(index)
-            if frame.icon and texture then
-                frame.icon:SetTexture(texture)
-            end
-        end
-    end
 end
 
 do --[[ FrameXML\SpellBookFrame.xml ]]
@@ -67,12 +59,14 @@ do --[[ FrameXML\SpellBookFrame.xml ]]
         Skin.SideTabTemplate(CheckButton)
     end
     function Skin.SpellBookFrameTabButtonTemplate(Button)
+        Skin.FrameTypeButton(Button)
+        Button:SetButtonColor(Color.frame, Util.GetFrameAlpha(), false)
+
         Button:SetHeight(28)
+        Button:SetHitRectInsets(0, 0, 0, 0)
         Button:SetNormalTexture("")
         Button:SetHighlightTexture("")
-
-        Skin.FrameTypeFrame(Button)
-        Base.SetHighlight(Button)
+        Button._auroraTabResize = true
     end
     function Skin.SpellButtonTemplate(CheckButton)
         local name = CheckButton:GetName()
@@ -105,70 +99,6 @@ do --[[ FrameXML\SpellBookFrame.xml ]]
         Base.CropIcon(CheckButton:GetPushedTexture())
         Base.CropIcon(CheckButton:GetHighlightTexture())
         Base.CropIcon(CheckButton:GetCheckedTexture())
-    end
-    function Skin.ProfessionButtonTemplate(CheckButton)
-        Base.CropIcon(CheckButton.iconTexture, CheckButton)
-
-        local nameFrame = _G[CheckButton:GetName().."NameFrame"]
-        nameFrame:SetTexture([[Interface\Spellbook\Spellbook-Parts]])
-        nameFrame:SetTexCoord(0.31250000, 0.96484375, 0.37109375, 0.52343750)
-        nameFrame:SetDesaturated(true)
-        nameFrame:SetAlpha(1)
-        nameFrame:SetSize(167, 39)
-        nameFrame:SetPoint("LEFT", CheckButton.iconTexture, "RIGHT", -2, 0)
-
-        Base.CropIcon(CheckButton:GetPushedTexture())
-        Base.CropIcon(CheckButton:GetHighlightTexture())
-        Base.CropIcon(CheckButton:GetCheckedTexture())
-    end
-    function Skin.ProfessionStatusBarTemplate(StatusBar)
-        local name = StatusBar:GetName()
-        Skin.FrameTypeStatusBar(StatusBar)
-        StatusBar:SetStatusBarColor(Color.green:GetRGB())
-
-        StatusBar:SetSize(115, 12)
-        StatusBar.rankText:SetPoint("CENTER")
-
-        _G[name.."Left"]:Hide()
-        StatusBar.capRight:SetAlpha(0)
-
-        _G[name.."BGLeft"]:Hide()
-        _G[name.."BGMiddle"]:Hide()
-        _G[name.."BGRight"]:Hide()
-    end
-    function Skin.PrimaryProfessionTemplate(Button)
-        local name = Button:GetName()
-
-        Button.professionName:SetPoint("TOPLEFT", Button.icon, "TOPRIGHT", 12, 0)
-        Button.missingHeader:SetTextColor(Color.white:GetRGB())
-        Button.missingText:SetTextColor(Color.grayLight:GetRGB())
-        _G[name.."IconBorder"]:Hide()
-
-        Button.icon:ClearAllPoints()
-        Button.icon:SetPoint("TOPLEFT", 6, -6)
-        Button.icon:SetSize(81, 81)
-        Base.CropIcon(Button.icon, Button)
-
-        Skin.ProfessionButtonTemplate(Button.button2)
-        Button.button2:SetPoint("TOPRIGHT", -109, 0)
-        Skin.ProfessionButtonTemplate(Button.button1)
-        Button.button1:SetPoint("TOPLEFT", Button.button2, "BOTTOMLEFT", 0, -3)
-        Skin.ProfessionStatusBarTemplate(Button.statusBar)
-        Button.statusBar:ClearAllPoints()
-        Button.statusBar:SetPoint("BOTTOMLEFT", Button.icon, "BOTTOMRIGHT", 9, 5)
-
-        Button.unlearn:ClearAllPoints()
-        Button.unlearn:SetPoint("BOTTOMRIGHT", Button.icon)
-    end
-    function Skin.SecondaryProfessionTemplate(Button)
-        Skin.ProfessionButtonTemplate(Button.button2)
-        Skin.ProfessionButtonTemplate(Button.button1)
-        Skin.ProfessionStatusBarTemplate(Button.statusBar)
-        Button.statusBar:SetPoint("BOTTOMLEFT", -10, 5)
-
-        Button.rank:SetPoint("BOTTOMLEFT", Button.statusBar, "TOPLEFT", 3, 4)
-        Button.missingHeader:SetTextColor(Color.white:GetRGB())
-        Button.missingText:SetTextColor(Color.grayLight:GetRGB())
     end
 end
 

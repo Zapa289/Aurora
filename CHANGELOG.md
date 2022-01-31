@@ -6,6 +6,7 @@
   * The "At War" check box in the reputations frame was out of place
   * The reputation detail frame had an out of place background
   * [classic] Error when mousing over the skill detail status bar
+  * [classic] Spellbook tabs would not react to mouse input
 
 
 ## [9.1.5.0] ##
