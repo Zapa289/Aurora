@@ -1,5 +1,5 @@
 local _, private = ...
-if not private.isBCC then return end
+if private.isRetail then return end
 
 --[[ Lua Globals ]]
 -- luacheck: globals floor max ipairs select
@@ -255,7 +255,11 @@ function private.FrameXML.ActionBarController()
         SetMicroButton(_G.TalentMicroButton, [[Interface\Icons\Ability_Marksmanship]])
         SetMicroButton(_G.QuestLogMicroButton, "Quest")
         SetMicroButton(_G.SocialsMicroButton, "Socials")
-        SetMicroButton(_G.LFGMicroButton, "LFG")
+        if private.isBCC then
+            SetMicroButton(_G.LFGMicroButton, "LFG")
+        else
+            SetMicroButton(_G.WorldMapMicroButton, [[Interface\WorldMap\WorldMap-Icon]], 0.21875, 0.6875, 0.109375, 0.8125)
+        end
         SetMicroButton(_G.MainMenuMicroButton, "MainMenu")
         SetMicroButton(_G.HelpMicroButton, [[Interface\Icons\INV_Misc_QuestionMark]])
 
@@ -265,7 +269,7 @@ function private.FrameXML.ActionBarController()
             _G.TalentMicroButton,
             _G.QuestLogMicroButton,
             _G.SocialsMicroButton,
-            _G.LFGMicroButton,
+            private.isBCC and _G.LFGMicroButton or _G.WorldMapMicroButton,
             _G.MainMenuMicroButton,
             _G.HelpMicroButton,
         })

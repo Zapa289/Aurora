@@ -1,5 +1,5 @@
 local _, private = ...
-if not private.isBCC then return end
+if private.isRetail then return end
 
 --[[ Lua Globals ]]
 -- luacheck: globals select
@@ -9,7 +9,7 @@ local Aurora = private.Aurora
 local Hook, Skin = Aurora.Hook, Aurora.Skin
 local Util = Aurora.Util
 
-do --[[ FrameXML\LFGFrame.lua ]]
+do --[[ FrameXML\Blizzard_LFGFrame.lua ]]
     Hook.LFGFrameMixin = {}
     function Hook.LFGFrameMixin:UpdateActivityIcon(i)
         local activityIcon = self.ActivityIcon[i]
@@ -22,10 +22,10 @@ do --[[ FrameXML\LFGFrame.lua ]]
     end
 end
 
---do --[[ FrameXML\LFGFrame.xml ]]
+--do --[[ FrameXML\Blizzard_LFGFrame.xml ]]
 --end
 
-function private.FrameXML.LFGFrame()
+function private.AddOns.Blizzard_LookingForGroupUI()
     ----====####$$$$%%%%$$$$####====----
     --              LFGFrame              --
     ----====####$$$$%%%%$$$$####====----

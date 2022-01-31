@@ -1,5 +1,5 @@
 local _, private = ...
-if not private.isClassic then return end
+if private.isRetail then return end
 
 local Color = private.Aurora.Color
 
