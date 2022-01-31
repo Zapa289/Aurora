@@ -74,6 +74,11 @@ do --[[ FrameXML\ReputationFrame.xml ]]
         StatusBar._bdFrame = bdFrame
 
         local name = StatusBar:GetName()
+        local atWarCheck = _G[name.."AtWarCheck"]:GetRegions()
+        atWarCheck:SetTexture([[Interface\Buttons\UI-CheckBox-SwordCheck]])
+        atWarCheck:SetTexCoord(0, 0.625, 0, 0.5625)
+        atWarCheck:SetSize(20, 18)
+
         _G[name.."FactionName"]:SetPoint("LEFT", bdFrame, 5, 0)
         _G[name.."FactionName"]:SetPoint("RIGHT", StatusBar,"LEFT" , -5, 0)
 
@@ -92,7 +97,7 @@ function private.FrameXML.ReputationFrame()
     ---------------------
     -- ReputationFrame --
     ---------------------
-    local bg = _G.CharacterFrame:GetBackdropTexture("bg")
+    local charFrameBG = _G.CharacterFrame:GetBackdropTexture("bg")
 
     local tl, tr, bl, br = _G.ReputationFrame:GetRegions()
     tl:Hide()
@@ -101,7 +106,7 @@ function private.FrameXML.ReputationFrame()
     br:Hide()
 
     _G.ReputationHeader1:ClearAllPoints()
-    _G.ReputationHeader1:SetPoint("TOPLEFT", bg, 10, -45)
+    _G.ReputationHeader1:SetPoint("TOPLEFT", charFrameBG, 10, -45)
     for i = 1, _G.NUM_FACTIONS_DISPLAYED do
         local factionRow = _G["ReputationBar"..i]
         local factionHeader = _G["ReputationHeader"..i]
@@ -118,8 +123,8 @@ function private.FrameXML.ReputationFrame()
     _G.ReputationFrameFactionLabel:SetPoint("TOPLEFT", 80, -40)
     _G.ReputationFrameStandingLabel:SetPoint("TOPLEFT", 220, -40)
 
-    _G.ReputationListScrollFrame:SetPoint("TOPLEFT", bg, 4, -4)
-    _G.ReputationListScrollFrame:SetPoint("BOTTOMRIGHT", bg, -23, 4)
+    _G.ReputationListScrollFrame:SetPoint("TOPLEFT", charFrameBG, 4, -4)
+    _G.ReputationListScrollFrame:SetPoint("BOTTOMRIGHT", charFrameBG, -23, 4)
 
     Skin.FauxScrollFrameTemplate(_G.ReputationListScrollFrame)
     local top, bottom = _G.ReputationListScrollFrame:GetRegions()
@@ -133,17 +138,19 @@ function private.FrameXML.ReputationFrame()
     ---------------------------
     -- ReputationDetailFrame --
     ---------------------------
-    _G.ReputationDetailFrame:SetPoint("TOPLEFT", _G.ReputationFrame, "TOPRIGHT", 1, -28)
-    Skin.DialogBorderTemplate(_G.ReputationDetailFrame)
+    local ReputationDetailFrame = _G.ReputationDetailFrame
+    ReputationDetailFrame:SetPoint("TOPLEFT", charFrameBG, "TOPRIGHT", 1, -28)
+    Skin.DialogBorderTemplate(ReputationDetailFrame)
+    local repDetailBG = ReputationDetailFrame:GetBackdropTexture("bg")
 
-    _G.ReputationDetailFactionName:SetPoint("TOPLEFT", 10, -10)
-    _G.ReputationDetailFactionName:SetPoint("TOPRIGHT", -10, -10)
+    _G.ReputationDetailFactionName:SetPoint("TOPLEFT", repDetailBG, 10, -8)
+    _G.ReputationDetailFactionName:SetPoint("BOTTOMRIGHT", repDetailBG, "TOPRIGHT", -10, -26)
     _G.ReputationDetailFactionDescription:SetPoint("TOPLEFT", _G.ReputationDetailFactionName, "BOTTOMLEFT", 0, -5)
     _G.ReputationDetailFactionDescription:SetPoint("TOPRIGHT", _G.ReputationDetailFactionName, "BOTTOMRIGHT", 0, -5)
 
-    local detailBG = _G.select(3, _G.ReputationDetailFrame:GetRegions())
-    detailBG:SetPoint("TOPLEFT", 1, -1)
-    detailBG:SetPoint("BOTTOMRIGHT", _G.ReputationDetailFrame, "TOPRIGHT", -1, -142)
+    local detailBG = _G.select(3, ReputationDetailFrame:GetRegions())
+    detailBG:SetPoint("TOPLEFT", repDetailBG, 1, -1)
+    detailBG:SetPoint("BOTTOMRIGHT", repDetailBG, "TOPRIGHT", -1, -142)
     detailBG:SetColorTexture(Color.button:GetRGB())
     _G.ReputationDetailCorner:Hide()
 
@@ -154,8 +161,27 @@ function private.FrameXML.ReputationFrame()
     _G.ReputationDetailDivider:SetHeight(1)
 
     Skin.UIPanelCloseButton(_G.ReputationDetailCloseButton)
-    Skin.OptionsSmallCheckButtonTemplate(_G.ReputationDetailAtWarCheckBox) -- BlizzWTF: doesn't use the template, but it should
-    _G.ReputationDetailAtWarCheckBox:SetPoint("TOPLEFT", detailBG, "BOTTOMLEFT", 10, -6)
+
+    do -- AtWarCheckBox
+        local atWarCheckBox = _G.ReputationDetailAtWarCheckBox
+        Skin.FrameTypeCheckButton(atWarCheckBox)
+        atWarCheckBox:SetPoint("BOTTOMLEFT", repDetailBG, 14, 25)
+        atWarCheckBox:SetBackdropOption("offsets", {
+            left = 6,
+            right = 6,
+            top = 6,
+            bottom = 6,
+        })
+
+        local bg = atWarCheckBox:GetBackdropTexture("bg")
+        local check = atWarCheckBox:GetCheckedTexture()
+        check:SetPoint("TOPLEFT", bg, -3, 2)
+
+        local disabled = atWarCheckBox:GetDisabledCheckedTexture()
+        disabled:SetTexture([[Interface\Buttons\UI-CheckBox-SwordCheck]])
+        disabled:SetAllPoints(check)
+    end
+
     Skin.OptionsSmallCheckButtonTemplate(_G.ReputationDetailInactiveCheckBox)
     Skin.OptionsSmallCheckButtonTemplate(_G.ReputationDetailMainScreenCheckBox)
 end
