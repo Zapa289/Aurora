@@ -26,13 +26,7 @@ do --[[ FrameXML\OptionsFrameTemplates.xml ]]
         _G[name.."Right"]:SetAlpha(0)
     end
     function Skin.OptionsFrameListTemplate(Frame)
-        if private.hasAPI then
-            Skin.TooltipBorderBackdropTemplate(Frame)
-        else
-            local name = Frame:GetName()
-            Base.SetBackdrop(Frame, Color.frame)
-            Skin.UIPanelScrollBarTemplate(_G[name.."ListScrollBar"])
-        end
+        Skin.TooltipBorderBackdropTemplate(Frame)
     end
     function Skin.OptionsListButtonTemplate(Button)
         Skin.ExpandOrCollapse(Button.toggle)

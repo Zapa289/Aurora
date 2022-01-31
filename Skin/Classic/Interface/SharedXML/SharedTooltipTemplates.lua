@@ -15,71 +15,34 @@ do --[[ FrameXML\SharedTooltipTemplates.lua ]]
             local r, g, b = Color.frame:GetRGB()
             local a = Util.GetFrameAlpha()
 
-            if private.hasAPI then
-                self.NineSlice:SetCenterColor(r, g, b, a);
-            else
-                self:SetBackdropColor(r, g, b, a)
-                self:SetBackdropBorderColor(r, g, b)
-            end
+            self.NineSlice:SetCenterColor(r, g, b, a);
         end
     end
 end
 
 do --[[ FrameXML\SharedTooltipTemplates.xml ]]
     function Skin.SharedTooltipTemplate(GameTooltip)
-        if private.hasAPI then
-            Skin.NineSlicePanelTemplate(GameTooltip.NineSlice)
-        else
-            Skin.FrameTypeFrame(GameTooltip)
-        end
+        Skin.NineSlicePanelTemplate(GameTooltip.NineSlice)
     end
     function Skin.SharedNoHeaderTooltipTemplate(GameTooltip)
         Skin.SharedTooltipTemplate(GameTooltip)
     end
     function Skin.TooltipBackdropTemplate(Frame)
-        if private.hasAPI then
-            Skin.NineSlicePanelTemplate(Frame.NineSlice)
+        Skin.NineSlicePanelTemplate(Frame.NineSlice)
 
-            local r, g, b = Color.frame:GetRGB()
-            Frame:SetBackdropColor(r, g, b, Frame.backdropColorAlpha or 1)
-        else
-            Skin.FrameTypeFrame(Frame)
-        end
+        local r, g, b = Color.frame:GetRGB()
+        Frame:SetBackdropColor(r, g, b, Frame.backdropColorAlpha or 1)
     end
     function Skin.TooltipBorderBackdropTemplate(Frame)
-        if private.hasAPI then
-            Skin.TooltipBackdropTemplate(Frame)
-        else
-            Skin.FrameTypeFrame(Frame)
-            Frame:SetBackdropColor(Color.frame, 0)
-        end
+        Skin.TooltipBackdropTemplate(Frame)
     end
     function Skin.TooltipBorderedFrameTemplate(Frame)
-        if private.hasAPI then
-            Skin.TooltipBackdropTemplate(Frame)
-        else
-            Frame.BorderTopLeft:Hide()
-            Frame.BorderTopRight:Hide()
-
-            Frame.BorderBottomLeft:Hide()
-            Frame.BorderBottomRight:Hide()
-
-            Frame.BorderTop:Hide()
-            Frame.BorderBottom:Hide()
-            Frame.BorderLeft:Hide()
-            Frame.BorderRight:Hide()
-
-            Frame.Background:Hide()
-            Skin.FrameTypeFrame(Frame)
-        end
+        Skin.TooltipBackdropTemplate(Frame)
     end
 end
 
 function private.SharedXML.SharedTooltipTemplates()
     if private.disabled.tooltips then return end
 
-    if not private.hasAPI then
-        _G.hooksecurefunc("GameTooltip_SetBackdropStyle", Hook.SharedTooltip_SetBackdropStyle)
-    end
     _G.hooksecurefunc("SharedTooltip_SetBackdropStyle", Hook.SharedTooltip_SetBackdropStyle)
 end
