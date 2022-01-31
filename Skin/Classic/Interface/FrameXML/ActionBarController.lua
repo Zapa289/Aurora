@@ -281,7 +281,9 @@ function private.FrameXML.ActionBarController()
     if not private.disabled.mainmenubar then
         _G.hooksecurefunc("MainMenuTrackingBar_Configure", Hook.MainMenuTrackingBar_Configure)
 
-        -- MainMenuExpBar
+        --------------------
+        -- MainMenuExpBar --
+        --------------------
         Skin.FrameTypeStatusBar(_G.MainMenuExpBar)
         Base.SetBackdropColor(_G.MainMenuExpBar, Color.frame)
         Util.PositionBarTicks(_G.MainMenuExpBar, 20, Color.frame)
@@ -295,7 +297,14 @@ function private.FrameXML.ActionBarController()
         _G.MainMenuXPBarTexture3:SetAlpha(0)
         select(6, _G.MainMenuExpBar:GetRegions()):Hide()
 
-        -- MainMenuBarArtFrame
+        ----------------------------
+        -- MainMenuBarMaxLevelBar --
+        ----------------------------
+        _G.MainMenuBarMaxLevelBar:SetAlpha(0)
+
+        -------------------------
+        -- MainMenuBarArtFrame --
+        -------------------------
         _G.MainMenuBarTexture0:SetAlpha(0)
         _G.MainMenuBarTexture1:SetAlpha(0)
         _G.MainMenuBarTexture2:SetAlpha(0)
@@ -304,7 +313,9 @@ function private.FrameXML.ActionBarController()
         _G.MainMenuBarLeftEndCap:Hide()
         _G.MainMenuBarRightEndCap:Hide()
 
-        -- MainMenuBarPerformanceBarFrame
+        ------------------------------------
+        -- MainMenuBarPerformanceBarFrame --
+        ------------------------------------
         local PerformanceBarFrame = _G.MainMenuBarPerformanceBarFrame
         Base.SetBackdrop(PerformanceBarFrame, Color.button, Color.frame.a)
         PerformanceBarFrame:SetBackdropOption("offsets", {
