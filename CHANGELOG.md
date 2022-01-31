@@ -1,4 +1,11 @@
-﻿## [9.1.5.0] ##
+﻿## [9.1.5.1] ##
+### Fixed ###
+
+  * [tbc] LFG skin was broken
+  * [classic] An extra texture was visible when at max level and not tracking any reputations
+
+
+## [9.1.5.0] ##
 ### Added ###
 
   * [tbc] LFG frame skin
@@ -337,6 +344,7 @@
   * Error when opening azerite respec UI
 
 [Unreleased]: https://github.com/Haleth/Aurora/compare/master...develop
+[9.1.5.1]: https://github.com/Haleth/Aurora/compare/9.1.5.0...9.1.5.1
 [9.1.5.0]: https://github.com/Haleth/Aurora/compare/9.0.5.0...9.1.5.0
 [9.0.5.0]: https://github.com/Haleth/Aurora/compare/9.0.2.1...9.0.5.0
 [9.0.2.1]: https://github.com/Haleth/Aurora/compare/9.0.2.0...9.0.2.1
