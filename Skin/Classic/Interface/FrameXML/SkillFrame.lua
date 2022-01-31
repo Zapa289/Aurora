@@ -91,7 +91,17 @@ function private.FrameXML.SkillFrame()
     top, bottom = _G.SkillDetailScrollFrame:GetRegions()
     top:Hide()
     bottom:Hide()
-    Skin.SkillStatusBarTemplate(_G.SkillDetailStatusBar)
+
+    do -- SkillDetailStatusBar
+        local SkillDetailStatusBar = _G.SkillDetailStatusBar
+        Skin.FrameTypeStatusBar(SkillDetailStatusBar)
+
+        local name = SkillDetailStatusBar:GetName()
+        Base.SetTexture(_G[name.."FillBar"], "gradientUp")
+
+        _G[name.."Background"]:Hide()
+        _G[name.."Border"]:SetAlpha(0)
+    end
 
     -------------
     -- Section --

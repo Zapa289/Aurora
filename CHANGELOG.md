@@ -5,6 +5,7 @@
   * [classic] An extra texture was visible when at max level and not tracking any reputations
   * The "At War" check box in the reputations frame was out of place
   * The reputation detail frame had an out of place background
+  * [classic] Error when mousing over the skill detail status bar
 
 
 ## [9.1.5.0] ##
