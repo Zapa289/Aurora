@@ -1287,6 +1287,7 @@ function commands.test()
 
             if private.isRetail then -- PvP
                 local isRated = false
+                local role = "DAMAGER"
                 local queueType = "ARENA"
                 local queueTypes = {
                     "ARENA",
@@ -1294,7 +1295,33 @@ function commands.test()
                     "BATTLEGROUND",
                     "WARGAME",
                 }
-                local role = "DAMAGER"
+
+                local PvpRoles = {
+                    GUIDE = {
+                        role = "GUIDE",
+                        totalRole = 1,
+                        totalAccepted = 1,
+                        totalDeclined = 0,
+                    },
+                    TANK = {
+                        role = "TANK",
+                        totalRole = 4,
+                        totalAccepted = 2,
+                        totalDeclined = 1,
+                    },
+                    HEALER = {
+                        role = "HEALER",
+                        totalRole = 4,
+                        totalAccepted = 2,
+                        totalDeclined = 0,
+                    },
+                    DAMAGER = {
+                        role = "DAMAGER",
+                        totalRole = 6,
+                        totalAccepted = 3,
+                        totalDeclined = 1,
+                    }
+                }
 
                 function _G.GetNumBattlefieldScores()
                     return 20
@@ -1436,6 +1463,20 @@ function commands.test()
                             type = "execute",
                             func = function()
                                 _G.PVPReadyDialog_Display(_G.PVPReadyDialog, 1, "displayName", isRated, queueType, "gameType", role)
+                            end,
+                            order = 3,
+                        },
+                        pvpPopup = {
+                            name = "Show popup",
+                            desc = "PVPReadyPopup",
+                            type = "execute",
+                            func = function()
+                                _G.PVPReadyPopup:OnEvent("PVP_ROLE_POPUP_SHOW", {
+                                    PvpRoles.GUIDE,
+                                    PvpRoles.TANK,
+                                    PvpRoles.HEALER,
+                                    PvpRoles.DAMAGER,
+                                })
                             end,
                             order = 3,
                         },
