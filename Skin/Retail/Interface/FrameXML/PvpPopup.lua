@@ -1,5 +1,6 @@
 local _, private = ...
 if not private.isRetail then return end
+if not private.isPatch then return end
 
 --[[ Lua Globals ]]
 -- luacheck: globals ipairs
