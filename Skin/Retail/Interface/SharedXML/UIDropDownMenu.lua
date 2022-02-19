@@ -224,7 +224,12 @@ do --[[ FrameXML\UIDropDownMenu.xml ]]
                 bottom = 2,
             })
 
-            local bg = Button:GetBackdropTexture("bg")
+            local bg = Frame:GetBackdropTexture("bg")
+            Frame.Text:ClearAllPoints()
+            Frame.Text:SetPoint("LEFT", bg, 3, 0)
+            Frame.Text:SetPoint("RIGHT", bg, -rightOfs, 0)
+
+            bg = Button:GetBackdropTexture("bg")
             local arrow = Button:CreateTexture(nil, "ARTWORK")
             arrow:SetPoint("TOPLEFT", bg, 3, -6)
             arrow:SetPoint("BOTTOMRIGHT", bg, -3, 5)
