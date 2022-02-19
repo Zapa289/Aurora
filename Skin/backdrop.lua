@@ -2,6 +2,7 @@ local _, private = ...
 
 --[[ Lua Globals ]]
 -- luacheck: globals type next error
+local MergeTable = _G.MergeTable -- From TableUtil.lua
 
 -- [[ Core ]]
 local Aurora = private.Aurora
@@ -338,11 +339,18 @@ local BackdropMixin do
 
         return (Util.GetNineSlicePiece(self, texture))
     end
-    function BackdropMixin:SetBackdropOption(optionKey, optionValue)
+    function BackdropMixin:SetBackdropOption(optionKey, optionValue, skipApply)
         if self.backdropInfo then
             local options = self.backdropInfo
-            if options[optionKey] ~= optionValue then
-                options[optionKey] = optionValue
+            if type(options[optionKey]) == "table" then
+                MergeTable(options[optionKey], optionValue)
+            else
+                if options[optionKey] ~= optionValue then
+                    options[optionKey] = optionValue
+                end
+            end
+
+            if not skipApply then
                 self:ApplyBackdrop()
             end
         end
@@ -355,8 +363,8 @@ local BackdropMixin do
     end
     function BackdropMixin:SetBackdropOptions(options)
         if self.backdropInfo then
-            for optionName, optionValue in next, options do
-                self.backdropInfo[optionName] = optionValue
+            for optionKey, optionValue in next, options do
+                self:SetBackdropOption(optionKey, optionValue, true)
             end
             self:ApplyBackdrop()
         end
