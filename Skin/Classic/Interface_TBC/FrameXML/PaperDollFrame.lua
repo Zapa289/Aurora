@@ -10,35 +10,26 @@ local Base = Aurora.Base
 local Hook, Skin = Aurora.Hook, Aurora.Skin
 
 do --[[ FrameXML\PaperDollFrame.lua ]]
-    do --[[ PaperDollFrame.lua ]]
-        function Hook.PaperDollFrame_SetLevel()
-            local classLocale, classColor = private.charClass.locale, _G.CUSTOM_CLASS_COLORS[private.charClass.token]
-            _G.CharacterLevelText:SetFormattedText(_G.PLAYER_LEVEL, _G.UnitLevel("player"), _G.UnitRace("player"), classColor:WrapTextInColorCode(classLocale))
-        end
-        function Hook.PaperDollItemSlotButton_Update(self)
-            local quality = _G.GetInventoryItemQuality("player", self:GetID());
-            Hook.SetItemButtonQuality(self, quality, _G.GetInventoryItemID("player", self:GetID()));
-        end
+    function Hook.PaperDollFrame_SetLevel()
+        local classLocale, classColor = private.charClass.locale, _G.CUSTOM_CLASS_COLORS[private.charClass.token]
+        _G.CharacterLevelText:SetFormattedText(_G.PLAYER_LEVEL, _G.UnitLevel("player"), _G.UnitRace("player"), classColor:WrapTextInColorCode(classLocale))
+    end
+    function Hook.PaperDollItemSlotButton_Update(self)
+        local quality = _G.GetInventoryItemQuality("player", self:GetID());
+        Hook.SetItemButtonQuality(self, quality, _G.GetInventoryItemID("player", self:GetID()));
     end
 end
 
 do --[[ FrameXML\PaperDollFrame.xml ]]
-    do --[[ AzeritePaperDollItemOverlay.xml ]]
-        function Skin.PaperDollAzeriteItemOverlayTemplate(Frame)
-            Frame.RankFrame.Label:SetPoint("CENTER", Frame.RankFrame.Texture, 0, 0)
-        end
-    end
-    do --[[ PaperDollFrame.xml ]]
-        Skin.PaperDollItemSlotButtonTemplate = Skin.FrameTypeItemButton
-        Skin.PaperDollItemSlotButtonLeftTemplate = Skin.PaperDollItemSlotButtonTemplate
-        Skin.PaperDollItemSlotButtonRightTemplate = Skin.PaperDollItemSlotButtonTemplate
-        Skin.PaperDollItemSlotButtonBottomTemplate = Skin.PaperDollItemSlotButtonTemplate
-        function Skin.MagicResistanceFrameTemplate(Frame)
-            Frame:SetSize(20, 20)
-            local icon = Frame:GetRegions()
-            Frame._icon = icon
-            Base.CropIcon(icon, Frame)
-        end
+    Skin.PaperDollItemSlotButtonTemplate = Skin.FrameTypeItemButton
+    Skin.PaperDollItemSlotButtonLeftTemplate = Skin.PaperDollItemSlotButtonTemplate
+    Skin.PaperDollItemSlotButtonRightTemplate = Skin.PaperDollItemSlotButtonTemplate
+    Skin.PaperDollItemSlotButtonBottomTemplate = Skin.PaperDollItemSlotButtonTemplate
+    function Skin.MagicResistanceFrameTemplate(Frame)
+        Frame:SetSize(20, 20)
+        local icon = Frame:GetRegions()
+        Frame._icon = icon
+        Base.CropIcon(icon, Frame)
     end
 end
 
@@ -53,8 +44,13 @@ function private.FrameXML.PaperDollFrame()
     bl:Hide()
     br:Hide()
 
-    _G.CharacterLevelText:SetPoint("CENTER", _G.CharacterNameText, "BOTTOM", 0, -4)
+    -- PlayerTitleDropDown:SetShown(true)
+    _G.CharacterLevelText:SetPoint("TOP", _G.CharacterNameText, "BOTTOM", 0, 0)
     Skin.UIDropDownMenuTemplate(_G.PlayerTitleDropDown)
+    _G.PlayerTitleDropDown:SetBackdropOption("offsets", {
+        top = -1,
+        bottom = 15,
+    })
 
     Skin.NavButtonNext(_G.CharacterModelFrameRotateRightButton)
     Skin.NavButtonPrevious(_G.CharacterModelFrameRotateLeftButton)
