@@ -148,6 +148,86 @@ function Util.HideNineSlice(frame)
     end
 end
 
+local textureKitColors = {
+    default = {
+        bg = Color.frame,
+        border = Color.frame,
+        title = Color.white,
+        text = Color.grayLight,
+    },
+    alliance = {
+        bg = private.FACTION_COLORS.Alliance,
+        border = private.FACTION_COLORS.Alliance,
+        title = Color.white,
+        text = Color.grayLight,
+    },
+    horde = {
+        bg = private.FACTION_COLORS.Horde:Lightness(-0.8),
+        border = private.FACTION_COLORS.Horde,
+        title = Color.white,
+        text = Color.grayLight,
+    },
+    Kyrian = {
+        bg = private.COVENANT_COLORS.Kyrian,
+        border = private.COVENANT_COLORS.Kyrian,
+        title = Color.white,
+        text = Color.grayLight,
+    },
+    Venthyr = {
+        bg = private.COVENANT_COLORS.Venthyr,
+        border = private.COVENANT_COLORS.Venthyr,
+        title = Color.white,
+        text = Color.grayLight,
+    },
+    NightFae = {
+        bg = private.COVENANT_COLORS.NightFae,
+        border = private.COVENANT_COLORS.NightFae,
+        title = Color.white,
+        text = Color.grayLight,
+    },
+    Necrolord = {
+        bg = private.COVENANT_COLORS.Necrolord,
+        border = private.COVENANT_COLORS.Necrolord,
+        title = Color.white,
+        text = Color.grayLight,
+    },
+    Maw = {
+        bg = private.COVENANT_COLORS.Maw,
+        border = private.COVENANT_COLORS.Maw,
+        title = Color.white,
+        text = Color.grayLight,
+    },
+}
+--[[ Util.GetColorsForTextureKit(_textureKit_)
+Provides the skin colors for a given textureKit.
+
+**Args:**
+* `textureKit` - the widget to fine a name for _(string)_
+
+**Returns:**
+* `colors` - the name of the given widget _(table)_
+
+    The table `colors` contains the following keys:
+    * `bg` - a backdrop color _(ColorMixin)_
+    * `border` - a border color _(ColorMixin)_
+    * `title` - a title text color _(ColorMixin)_
+    * `text` - a regular text color _(ColorMixin)_
+--]]
+function Util.GetColorsForTextureKit(textureKit)
+    if textureKit then
+        if textureKitColors[textureKit] then
+            return textureKitColors[textureKit]
+        else
+            if private.isDev then
+                private.debug("Missing colors for textureKit", textureKit)
+            end
+        end
+    end
+
+    return textureKitColors.default
+end
+
+
 local tempMixin = {}
 function Util.Mixin(table, ...)
     wipe(tempMixin)

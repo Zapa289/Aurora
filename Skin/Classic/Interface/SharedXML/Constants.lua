@@ -9,11 +9,6 @@ private.IGNORED_QUEST_DISPLAY = _G.IGNORED_QUEST_DISPLAY:gsub("ff000000", Color.
 
 private.FRAME_TITLE_HEIGHT = 27
 
-private.FACTION_COLORS = {
-    Alliance = Color.Create(0.0, 0.2, 0.6),
-    Horde = Color.Create(0.5, 0.0, 0.0),
-}
-
 local Enum = {}
 Enum.ItemQuality = {
     Poor = _G.LE_ITEM_QUALITY_POOR or _G.Enum.ItemQuality.Poor,
