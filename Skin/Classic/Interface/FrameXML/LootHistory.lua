@@ -65,8 +65,8 @@ end
 --end
 
 function private.FrameXML.LootHistory()
-    _G.hooksecurefunc("LootHistoryFrame_UpdateItemFrame", Hook.LootHistoryFrame_UpdateItemFrame)
-    _G.hooksecurefunc("LootHistoryFrame_UpdatePlayerFrame", Hook.LootHistoryFrame_UpdatePlayerFrame)
+    --_G.hooksecurefunc("LootHistoryFrame_UpdateItemFrame", Hook.LootHistoryFrame_UpdateItemFrame)
+    --_G.hooksecurefunc("LootHistoryFrame_UpdatePlayerFrame", Hook.LootHistoryFrame_UpdatePlayerFrame)
 
     local LootHistoryFrame = _G.LootHistoryFrame
     Skin.TooltipBorderedFrameTemplate(LootHistoryFrame)

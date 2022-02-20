@@ -28,7 +28,7 @@ function private.FrameXML.RaidFrame()
     _G.RaidInfoDetailHeader:Hide()
     _G.RaidInfoDetailCorner:Hide()
     _G.RaidInfoHeader:ClearAllPoints()
-    _G.RaidInfoHeader:SetPoint("TOPLEFT")
+    _G.RaidInfoHeader:SetPoint("TOPLEFT", 0, -5)
     _G.RaidInfoHeader:SetPoint("BOTTOMRIGHT", _G.RaidInfoFrame, "TOPRIGHT", 0, -private.FRAME_TITLE_HEIGHT)
     _G.RaidInfoFrame:SetPoint("TOPLEFT", _G.RaidFrame, "TOPRIGHT", 1, -28)
 
@@ -36,4 +36,15 @@ function private.FrameXML.RaidFrame()
     Skin.UIPanelScrollFrameTemplate(_G.RaidInfoScrollFrame)
     _G.RaidInfoScrollFrameTop:Hide()
     _G.RaidInfoScrollFrameBottom:Hide()
+    
+    _G.RaidInfoSubheader:SetPoint("TOPLEFT", _G.RaidInfoHeader, "BOTTOMLEFT", 20, -5)
+    _G.RaidInfoInstanceLabel:SetPoint("TOPLEFT", _G.RaidInfoSubheader, "BOTTOMLEFT", 0, -13)
+    _G.RaidInfoIDLabel:SetPoint("LEFT", _G.RaidInfoInstanceLabel, "RIGHT", 120, 0)
+    
+    for i = 1, 5 do
+        infoInstance = _G["RaidInfoInstance"..i]
+        infoInstanceID = _G["RaidInfoInstance"..i.."ID"]
+        infoInstanceID:SetPoint("TOPRIGHT", infoInstance, "TOPRIGHT", 0, -12)
+    end
+    
 end

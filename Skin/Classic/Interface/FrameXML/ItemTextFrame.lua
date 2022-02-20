@@ -10,7 +10,7 @@ local Hook, Skin = Aurora.Hook, Aurora.Skin
 local Color = Aurora.Color
 
 do --[[ FrameXML\ItemTextFrame.lua ]]
-    function Hook.ItemTextFrame_OnEvent(self, event, ...)
+    function Hook.ItemTextFrame_OnEvent(self, event, ...)   
         if event == "ITEM_TEXT_BEGIN" then
             if _G.ItemTextGetMaterial() == "ParchmentLarge" then
                 _G.ItemTextPageText:SetTextColor("P", Color.grayLight:GetRGB())
@@ -27,14 +27,14 @@ do --[[ FrameXML\ItemTextFrame.lua ]]
         elseif event == "ITEM_TEXT_READY" then
             local page = _G.ItemTextGetPage()
             local hasNext = _G.ItemTextHasNextPage()
-
+            
             _G.ItemTextScrollFrame:ClearAllPoints()
             if (page > 1) or hasNext then
-                _G.ItemTextScrollFrame:SetPoint("TOPLEFT", _G.ItemTextFrame, 4, -(private.FRAME_TITLE_HEIGHT * 2 + 4))
-                _G.ItemTextScrollFrame:SetPoint("BOTTOMRIGHT", _G.ItemTextFrame, -23, 4)
+                _G.ItemTextScrollFrame:SetPoint("TOPLEFT", _G.ItemTextFrame, 25, -(private.FRAME_TITLE_HEIGHT * 2 + 8))
+                _G.ItemTextScrollFrame:SetPoint("BOTTOMRIGHT", _G.ItemTextFrame, -56, 77)
             else
-                _G.ItemTextScrollFrame:SetPoint("TOPLEFT", _G.ItemTextFrame, 4, -(private.FRAME_TITLE_HEIGHT + 4))
-                _G.ItemTextScrollFrame:SetPoint("BOTTOMRIGHT", _G.ItemTextFrame, -23, 4)
+                _G.ItemTextScrollFrame:SetPoint("TOPLEFT", _G.ItemTextFrame, 25, -(private.FRAME_TITLE_HEIGHT + 8))
+                _G.ItemTextScrollFrame:SetPoint("BOTTOMRIGHT", _G.ItemTextFrame, -56, 77)
             end
         end
     end
@@ -74,8 +74,14 @@ function private.FrameXML.ItemTextFrame()
     _G.ItemTextCurrentPage:SetPoint("TOP", 0, -(private.FRAME_TITLE_HEIGHT * 1.25))
 
     Skin.UIPanelScrollFrameTemplate(_G.ItemTextScrollFrame)
-    _G.ItemTextScrollFrame.ScrollBar:SetPoint("TOPLEFT", _G.ItemTextScrollFrame, "TOPRIGHT", 1, -17)
+    _G.ItemTextScrollFrame.ScrollBar:SetPoint("TOPLEFT", _G.ItemTextScrollFrame, "TOPRIGHT", 1, -25)
     _G.ItemTextScrollFrame.ScrollBar:SetPoint("BOTTOMLEFT", _G.ItemTextScrollFrame, "BOTTOMRIGHT", 1, 17)
+    print(_G.ItemTextScrollFrame:GetRegions())
+    local top, mid, bottom = _G.ItemTextScrollFrame:GetRegions()
+    top:Hide()
+    mid:Hide()
+    bottom:Hide()
+    
     _G.ItemTextScrollFrameTop:Hide()
     _G.ItemTextScrollFrameBottom:Hide()
     _G.ItemTextScrollFrameMiddle:Hide()
@@ -97,6 +103,6 @@ function private.FrameXML.ItemTextFrame()
             button:GetRegions():SetPoint("RIGHT", button, "LEFT", -3, 0)
         end
     end
-
+    
     Skin.UIPanelCloseButton(_G.ItemTextCloseButton)
 end

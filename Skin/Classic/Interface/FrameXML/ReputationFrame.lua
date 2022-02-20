@@ -12,7 +12,7 @@ local Color = Aurora.Color
 do --[[ FrameXML\ReputationFrame.lua ]]
     function Hook.ReputationFrame_OnShow(self)
         -- The TOPRIGHT anchor for ReputationBar1 is set in C code
-        _G.ReputationBar1:SetPoint("TOPRIGHT", -34, -49)
+        _G.ReputationBar1:SetPoint("TOPRIGHT", -71, -49)
     end
     function Hook.ReputationFrame_Update(self)
         for i = 1, _G.NUM_FACTIONS_DISPLAYED do
@@ -23,6 +23,7 @@ do --[[ FrameXML\ReputationFrame.lua ]]
                 local bd = factionRow._bdFrame or factionRow
                 if atWarWith then
                     Base.SetBackdropColor(bd, Color.red)
+                    _G["ReputationBar"..i.."AtWarCheck"]:Hide()
                 else
                     Base.SetBackdropColor(bd, Color.button)
                 end

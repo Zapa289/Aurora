@@ -10,6 +10,7 @@
 ## X-Curse-Project-ID: 278735
 ## X-WoWI-ID: 18589
 ## X-Wago-ID: JZKbRK19
+## Dependencies: WideQuestLog
 
 Skin\skin.xml
 #@non-debug@
