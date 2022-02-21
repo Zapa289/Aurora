@@ -6,7 +6,6 @@ if not private.isRetail then return end
 
 --[[ Core ]]
 local Aurora = private.Aurora
-local Base = Aurora.Base
 local Hook, Skin = Aurora.Hook, Aurora.Skin
 local Util = Aurora.Util
 
@@ -21,8 +20,6 @@ do --[[ AddOns\Blizzard_CovenantRenown.lua ]]
             g_covenantID = covenantID
 
             local textureKit = covenantData.textureKit
-            local _, _, _, a = self.NineSlice:GetBackdropColor()
-            Base.SetBackdropColor(self.NineSlice, private.COVENANT_COLORS[textureKit], a)
             self.Divider:SetColorTexture(private.COVENANT_COLORS[textureKit]:GetRGB())
             self.Divider:SetHeight(1)
             self._anima2:SetAtlas("CovenantSanctum-Renown-Anima-"..textureKit, true)

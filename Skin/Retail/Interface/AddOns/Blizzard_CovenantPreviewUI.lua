@@ -17,8 +17,6 @@ do --[[ AddOns\Blizzard_CovenantPreviewUI.lua ]]
 
         self.BorderFrame:Hide()
         self.Background:Hide()
-        local _, _, _, a = self:GetBackdropColor()
-        Base.SetBackdropColor(self, private.COVENANT_COLORS[self.uiTextureKit], a)
 
         self.Title.Left:Hide()
         self.Title.Right:Hide()

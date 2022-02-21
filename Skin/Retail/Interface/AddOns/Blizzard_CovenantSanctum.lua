@@ -6,7 +6,6 @@ if not private.isRetail then return end
 
 --[[ Core ]]
 local Aurora = private.Aurora
-local Base = Aurora.Base
 local Hook, Skin = Aurora.Hook, Aurora.Skin
 local Util = Aurora.Util
 
@@ -18,8 +17,6 @@ do --[[ AddOns\Blizzard_CovenantSanctum.lua ]]
             if covenantID ~= self.covenantID then
                 covenantID = self.covenantID
 
-                local _, _, _, a = self.NineSlice:GetBackdropColor()
-                Base.SetBackdropColor(self.NineSlice, private.COVENANT_COLORS[self.covenantData.textureKit], a)
                 self.NineSlice:SetBackdropOption("offsets", {
                     left = 12,
                     right = 9,
