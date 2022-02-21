@@ -248,11 +248,9 @@ Provides the skin colors for a given textureKit.
 function Util.GetTextureKit(textureKit, useAlt)
     if textureKit then
         if uiTextureKits[textureKit] then
-            print("GetTextureKit", textureKit)
             return uiTextureKits[textureKit]
         else
             private.debug("Missing kit for textureKit", textureKit)
-            print("Missing kit for textureKit", textureKit)
         end
     end
     return useAlt and uiTextureKits.alt or uiTextureKits.default
