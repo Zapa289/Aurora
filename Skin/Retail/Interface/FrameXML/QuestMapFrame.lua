@@ -12,62 +12,40 @@ local Color, Util = Aurora.Color, Aurora.Util
 
 do --[[ FrameXML\QuestMapFrame.lua ]]
     -- /dump C_CampaignInfo.GetCampaignInfo(C_CampaignInfo.GetCurrentCampaignID())
-    local uiTextureKits = private.uiTextureKits
-
     function Hook.QuestLogQuests_Update(poiTable)
         local kit, overlay
         for campaignHeader in _G.QuestScrollFrame.campaignHeaderFramePool:EnumerateActive() do
             local campaign = campaignHeader:GetCampaign()
             if campaign then
-                kit = uiTextureKits[campaign.uiTextureKit]
-                if not kit then
-                    kit = uiTextureKits.Default
-                    private.debug("missing campaign header", campaign.uiTextureKit)
-                end
+                kit = Util.GetTextureKit(campaign.uiTextureKit, true)
                 campaignHeader.Background:SetTexture("")
                 campaignHeader._auroraBG:SetColorTexture(kit.color:GetRGB())
 
                 overlay = campaignHeader._auroraOverlay
                 overlay:SetPoint("CENTER", campaignHeader._auroraBG, "RIGHT", -25, 0)
-                if kit.texture then
-                    overlay:SetTexture(kit.texture)
-                    overlay:SetSize(130, 130)
+                overlay:SetAtlas(kit.emblem)
+                overlay:SetSize(66.33, 76.56)
 
-                    overlay:SetBlendMode("ADD")
-                    overlay:SetVertexColor(1, 1, 1)
-                else
-                    overlay:SetAtlas(kit.atlas)
-                    overlay:SetSize(66.33, 76.56)
-
-                    overlay:SetBlendMode("BLEND")
-                    overlay:SetVertexColor(0, 0, 0)
-                end
+                overlay:SetBlendMode("BLEND")
+                overlay:SetVertexColor(0, 0, 0)
                 campaignHeader.HighlightTexture:SetColorTexture(Color.white.r, Color.white.g, Color.white.b, Color.frame.a)
             end
         end
 
+        local covenantData = _G.C_Covenants.GetCovenantData(_G.C_Covenants.GetActiveCovenantID())
+        kit = Util.GetTextureKit(covenantData.textureKit, true)
         for callingHeader in _G.QuestScrollFrame.covenantCallingsHeaderFramePool:EnumerateActive() do
-            if kit then
-                callingHeader.Background:SetTexture("")
-                callingHeader._auroraBG:SetColorTexture(uiTextureKits.Default.color:GetRGB())
+            callingHeader.Background:SetTexture("")
+            callingHeader._auroraBG:SetColorTexture(Util.uiTextureKits.alt.color:GetRGB())
 
-                overlay = callingHeader._auroraOverlay
-                overlay:SetPoint("CENTER", callingHeader._auroraBG, "RIGHT", -25, 0)
-                if kit.texture then
-                    overlay:SetTexture(kit.texture)
-                    overlay:SetSize(130, 130)
+            overlay = callingHeader._auroraOverlay
+            overlay:SetPoint("CENTER", callingHeader._auroraBG, "RIGHT", -25, 0)
+            overlay:SetAtlas(kit.emblem)
+            overlay:SetSize(66.33, 76.56)
 
-                    overlay:SetBlendMode("ADD")
-                    overlay:SetVertexColor(1, 1, 1)
-                else
-                    overlay:SetAtlas(kit.atlas)
-                    overlay:SetSize(66.33, 76.56)
-
-                    overlay:SetBlendMode("BLEND")
-                    overlay:SetVertexColor(0, 0, 0)
-                end
-                callingHeader.HighlightBackground:SetColorTexture(Color.white.r, Color.white.g, Color.white.b, Color.frame.a)
-            end
+            overlay:SetBlendMode("BLEND")
+            overlay:SetVertexColor(0, 0, 0)
+            callingHeader.HighlightBackground:SetColorTexture(Color.white.r, Color.white.g, Color.white.b, Color.frame.a)
         end
 
         local separator = _G.QuestScrollFrame.Contents.Separator

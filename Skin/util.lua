@@ -148,83 +148,114 @@ function Util.HideNineSlice(frame)
     end
 end
 
-local textureKitColors = {
+local uiTextureKits = {
     default = {
-        bg = Color.frame,
-        border = Color.frame,
+        color = Color.frame,
+        backdrop = Color.frame,
         title = Color.white,
         text = Color.grayLight,
     },
-    alliance = {
-        bg = private.FACTION_COLORS.Alliance,
-        border = private.FACTION_COLORS.Alliance,
+    alt = {
+        color = Color.button,
+        backdrop = Color.button,
         title = Color.white,
         text = Color.grayLight,
+    },
+
+    alliance = {
+        color = private.FACTION_COLORS.Alliance,
+        backdrop = private.FACTION_COLORS.Alliance:Lightness(-0.8),
+        title = Color.white,
+        text = Color.grayLight,
+        emblem = "pvpqueue-sidebar-honorbar-badge-alliance",
     },
     horde = {
-        bg = private.FACTION_COLORS.Horde:Lightness(-0.8),
-        border = private.FACTION_COLORS.Horde,
+        color = private.FACTION_COLORS.Horde,
+        backdrop = private.FACTION_COLORS.Horde:Lightness(-0.6),
         title = Color.white,
         text = Color.grayLight,
+        emblem = "pvpqueue-sidebar-honorbar-badge-horde",
     },
+
+    legion = {
+        color = Color.green:Lightness(-0.3),
+        backdrop = Color.green:Lightness(-0.8),
+        title = Color.white,
+        text = Color.grayLight,
+        emblem = "",
+    },
+
     Kyrian = {
-        bg = private.COVENANT_COLORS.Kyrian,
-        border = private.COVENANT_COLORS.Kyrian,
+        color = private.COVENANT_COLORS.Kyrian,
+        backdrop = private.COVENANT_COLORS.Kyrian:Lightness(-0.8),
         title = Color.white,
         text = Color.grayLight,
-    },
-    Venthyr = {
-        bg = private.COVENANT_COLORS.Venthyr,
-        border = private.COVENANT_COLORS.Venthyr,
-        title = Color.white,
-        text = Color.grayLight,
-    },
-    NightFae = {
-        bg = private.COVENANT_COLORS.NightFae,
-        border = private.COVENANT_COLORS.NightFae,
-        title = Color.white,
-        text = Color.grayLight,
+        emblem = "ShadowlandsMissionsLandingPage-Background-Kyrian",
     },
     Necrolord = {
-        bg = private.COVENANT_COLORS.Necrolord,
-        border = private.COVENANT_COLORS.Necrolord,
+        color = private.COVENANT_COLORS.Necrolord,
+        backdrop = private.COVENANT_COLORS.Necrolord:Lightness(-0.8),
         title = Color.white,
         text = Color.grayLight,
+        emblem = "ShadowlandsMissionsLandingPage-Background-Necrolord",
+    },
+    NightFae = {
+        color = private.COVENANT_COLORS.NightFae,
+        backdrop = private.COVENANT_COLORS.NightFae,
+        title = Color.white,
+        text = Color.grayLight,
+        emblem = "ShadowlandsMissionsLandingPage-Background-NightFae",
+    },
+    Venthyr = {
+        color = private.COVENANT_COLORS.Venthyr,
+        backdrop = private.COVENANT_COLORS.Venthyr:Lightness(-0.8),
+        title = Color.white,
+        text = Color.grayLight,
+        emblem = "ShadowlandsMissionsLandingPage-Background-Venthyr",
     },
     Maw = {
-        bg = private.COVENANT_COLORS.Maw,
-        border = private.COVENANT_COLORS.Maw,
+        color = private.COVENANT_COLORS.Maw,
+        backdrop = private.COVENANT_COLORS.Maw:Lightness(-0.8),
         title = Color.white,
         text = Color.grayLight,
+        emblem = "",
     },
 }
---[[ Util.GetColorsForTextureKit(_textureKit_)
+uiTextureKits.Bastion = uiTextureKits.Kyrian
+uiTextureKits.Maldraxxus = uiTextureKits.Necrolord
+uiTextureKits.Ardenweald = uiTextureKits.NightFae
+uiTextureKits.Fey = uiTextureKits.NightFae
+uiTextureKits.Revendreth = uiTextureKits.Venthyr
+uiTextureKits["jailerstower-scenario"] = uiTextureKits.Maw
+Util.uiTextureKits = uiTextureKits
+
+--[[ Util.GetTextureKit(_textureKit_)
 Provides the skin colors for a given textureKit.
 
 **Args:**
 * `textureKit` - the widget to fine a name for _(string)_
 
 **Returns:**
-* `colors` - the name of the given widget _(table)_
+* `kit` - the name of the given widget _(table)_
 
     The table `colors` contains the following keys:
-    * `bg` - a backdrop color _(ColorMixin)_
-    * `border` - a border color _(ColorMixin)_
+    * `color` - the primary kit color _(ColorMixin)_
+    * `backdrop` - a backdrop color _(ColorMixin)_
     * `title` - a title text color _(ColorMixin)_
     * `text` - a regular text color _(ColorMixin)_
+    * `emblem` - an atlas name _(string)_
 --]]
-function Util.GetColorsForTextureKit(textureKit)
+function Util.GetTextureKit(textureKit, useAlt)
     if textureKit then
-        if textureKitColors[textureKit] then
-            return textureKitColors[textureKit]
+        if uiTextureKits[textureKit] then
+            print("GetTextureKit", textureKit)
+            return uiTextureKits[textureKit]
         else
-            if private.isDev then
-                private.debug("Missing colors for textureKit", textureKit)
-            end
+            private.debug("Missing kit for textureKit", textureKit)
+            print("Missing kit for textureKit", textureKit)
         end
     end
-
-    return textureKitColors.default
+    return useAlt and uiTextureKits.alt or uiTextureKits.default
 end
 
 

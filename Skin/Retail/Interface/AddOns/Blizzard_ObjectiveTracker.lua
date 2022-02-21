@@ -111,29 +111,20 @@ do --[[ AddOns\Blizzard_ObjectiveTracker.lua ]]
         end
 
         -- /dump Aurora.Color.blue:Hue(-0.333):GetRGB()
-        local uiTextureKits = private.uiTextureKits
-
         function Hook.ScenarioStage_CustomizeBlock(stageBlock, scenarioType, widgetSetID, textureKit)
             -- /dump GetUITextureKitInfo(5117)
             private.debug("ScenarioStage_CustomizeBlock", scenarioType, widgetSetID, textureKit)
 
             if scenarioType == _G.LE_SCENARIO_TYPE_LEGION_INVASION then
-                textureKit = uiTextureKits.legion
+                textureKit = "legion"
             end
 
-            local kit = uiTextureKits[textureKit]
-            if not kit then
-                kit = uiTextureKits.Default
-                private.debug("Missing scenario block", textureKit)
-            end
+            local kit = Util.GetTextureKit(textureKit, true)
+                stageBlock._auroraBG:SetBackdropGradient(kit.color)
+                stageBlock._auroraBG:SetBackdropBorderColor(kit.color)
+            stageBlock._auroraOverlay:SetAtlas(kit.emblem)
 
-            if kit.gradient then
-                stageBlock._auroraBG:SetBackdropGradient(kit.gradient)
-                stageBlock._auroraBG:SetBackdropBorderColor(kit.gradient)
-            else
-                Base.SetBackdropColor(stageBlock._auroraBG, kit.color, 0.75)
-            end
-            stageBlock._auroraOverlay:SetTexture(kit.texture)
+            stageBlock.Stage:SetTextColor(kit.title:GetRGB())
         end
     end
 end
@@ -373,7 +364,8 @@ function private.AddOns.Blizzard_ObjectiveTracker()
     -- ScenarioObjectiveBlock
     -- ScenarioStageBlock
     local ScenarioStageBlock = _G.ScenarioStageBlock
-    ScenarioStageBlock.NormalBG:Hide()
+    ScenarioStageBlock.NormalBG:SetAlpha(0)
+
     local ssbBD = _G.CreateFrame("Frame", nil, ScenarioStageBlock)
     ssbBD:SetFrameLevel(ScenarioStageBlock:GetFrameLevel())
     ssbBD:SetAllPoints(ScenarioStageBlock.NormalBG)

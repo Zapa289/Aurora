@@ -10,43 +10,29 @@ local Hook, Skin = Aurora.Hook, Aurora.Skin
 local Color, Util = Aurora.Color, Aurora.Util
 
 do --[[ FrameXML\CampaignOverview.lua ]]
-    local uiTextureKits = private.uiTextureKits
-
     Hook.CampaignOverviewMixin = {}
     function Hook.CampaignOverviewMixin:SetCampaign(campaignID)
         local campaignHeader = self.Header
         local campaign = campaignHeader.campaign
         if campaign then
-            local kit = uiTextureKits[campaign.uiTextureKit]
-            if not kit then
-                kit = uiTextureKits.Default
-                private.debug("missing campaign header", campaign.uiTextureKit)
-            end
+            local kit = Util.GetTextureKit(campaign.uiTextureKit, true)
             campaignHeader.Background:SetTexture("")
             campaignHeader._auroraBG:SetColorTexture(kit.color:GetRGB())
 
             local overlay = campaignHeader._auroraOverlay
             overlay:SetPoint("CENTER", campaignHeader._auroraBG, "RIGHT", -25, 0)
-            if kit.texture then
-                overlay:SetTexture(kit.texture)
-                overlay:SetSize(130, 130)
+            overlay:SetAtlas(kit.emblem)
+            overlay:SetSize(66.33, 76.56)
 
-                overlay:SetBlendMode("ADD")
-                overlay:SetVertexColor(1, 1, 1)
-            else
-                overlay:SetAtlas(kit.atlas)
-                overlay:SetSize(66.33, 76.56)
-
-                overlay:SetBlendMode("BLEND")
-                overlay:SetVertexColor(0, 0, 0)
-            end
+            overlay:SetBlendMode("BLEND")
+            overlay:SetVertexColor(0, 0, 0)
             campaignHeader.HighlightTexture:SetColorTexture(Color.white.r, Color.white.g, Color.white.b, Color.frame.a)
         end
     end
     function Hook.CampaignOverviewMixin:UpdateCampaignLoreText(campaignID, textEntries)
         local campaign, color = self.Header.campaign
-        if campaign then
-            color = uiTextureKits[campaign.uiTextureKit].color
+        if campaign and Util.uiTextureKits[campaign.uiTextureKit] then
+            color = Util.uiTextureKits[campaign.uiTextureKit].color
         else
             color = Color.highlight
         end
