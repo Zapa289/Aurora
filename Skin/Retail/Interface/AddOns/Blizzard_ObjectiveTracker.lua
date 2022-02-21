@@ -36,7 +36,7 @@ do --[[ AddOns\Blizzard_ObjectiveTracker.lua ]]
                     Skin[template](line)
                     line._auroraSkinned = true
                 else
-                    private.debug("DEFAULT_OBJECTIVE_TRACKER_MODULE_AddObjective:", template, "does not exist.")
+                    private.debug("Missing template for Objective Tracker", template)
                     line._auroraSkinned = template
                 end
             end
@@ -120,8 +120,8 @@ do --[[ AddOns\Blizzard_ObjectiveTracker.lua ]]
             end
 
             local kit = Util.GetTextureKit(textureKit, true)
-                stageBlock._auroraBG:SetBackdropGradient(kit.color)
-                stageBlock._auroraBG:SetBackdropBorderColor(kit.color)
+            stageBlock._auroraBG:SetBackdropGradient(kit.color)
+            stageBlock._auroraBG:SetBackdropBorderColor(kit.color)
             stageBlock._auroraOverlay:SetAtlas(kit.emblem)
 
             stageBlock.Stage:SetTextColor(kit.title:GetRGB())

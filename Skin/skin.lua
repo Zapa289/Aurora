@@ -118,7 +118,7 @@ do -- StatusBar
                 texture:SetVertexColor(color:GetRGB())
             end
         else
-            private.debug("SetStatusBarAtlas missing atlas", atlas)
+            private.debug("Missing color for status bar atlas:", atlas)
         end
     end
     local function Hook_SetStatusBarColor(self, r, g, b)
