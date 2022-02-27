@@ -44,7 +44,6 @@ do --[[ AddOns\Blizzard_GuildControlUI.xml ]]
         Base.CropIcon(Frame.owned.tabIcon, Frame.owned)
         Skin.GuildPermissionCheckBoxTemplate(Frame.owned.viewCB)
         Skin.GuildPermissionCheckBoxTemplate(Frame.owned.depositCB)
-        Skin.GuildPermissionCheckBoxTemplate(Frame.owned.infoCB)
         Skin.InputBoxTemplate(Frame.owned.editBox)
 
         --Skin.SmallMoneyFrameTemplate(Frame.buy.money)
@@ -57,23 +56,29 @@ function private.AddOns.Blizzard_GuildControlUI()
     _G.hooksecurefunc("GuildControlUI_RankOrder_Update", Hook.GuildControlUI_RankOrder_Update)
     _G.hooksecurefunc("GuildControlUI_BankTabPermissions_Update", Hook.GuildControlUI_BankTabPermissions_Update)
 
-    Skin.TranslucentFrameTemplate(_G.GuildControlUI)
+    local GuildControlUI = _G.GuildControlUI
+    Skin.TranslucentFrameTemplate(GuildControlUI)
     _G.GuildControlUITopBg:Hide()
     Skin.HorizontalBarTemplate(_G.GuildControlUIHbar)
     Skin.UIPanelCloseButton(_G.GuildControlUICloseButton)
-    Skin.UIDropDownMenuTemplate(_G.GuildControlUI.dropdown)
+    Skin.UIDropDownMenuTemplate(GuildControlUI.dropdown)
+    GuildControlUI.dropdown.Button:SetWidth(24)
 
     Skin.RankChangeTemplate(_G.GuildControlUIRankOrderFrameRank1)
     Skin.UIPanelButtonTemplate(_G.GuildControlUIRankOrderFrame.newButton)
     Skin.UIPanelButtonTemplate(_G.GuildControlUIRankOrderFrame.dupButton)
 
-    Skin.UIDropDownMenuTemplate(_G.GuildControlUI.bankTabFrame.dropdown)
-    Skin.InsetFrameTemplate2(_G.GuildControlUI.bankTabFrame.inset)
-    Skin.UIPanelScrollFrameTemplate2(_G.GuildControlUI.bankTabFrame.inset.scrollFrame)
+    local bankTabFrame = GuildControlUI.bankTabFrame
+    Skin.UIDropDownMenuTemplate(bankTabFrame.dropdown)
+    bankTabFrame.dropdown.Button:SetWidth(24)
+    Skin.InsetFrameTemplate2(bankTabFrame.inset)
+    Skin.UIPanelScrollFrameTemplate2(bankTabFrame.inset.scrollFrame)
 
-    Skin.UIDropDownMenuTemplate(_G.GuildControlUI.rankPermFrame.dropdown)
-    Skin.GuildPermissionCheckBoxTemplate(_G.GuildControlUI.rankPermFrame.OfficerCheckbox)
-    Skin.GuildPermissionCheckBoxTemplate(_G.GuildControlUI.rankPermFrame.InviteCheckbox)
+    local rankPermFrame = GuildControlUI.rankPermFrame
+    Skin.UIDropDownMenuTemplate(rankPermFrame.dropdown)
+    rankPermFrame.dropdown.Button:SetWidth(24)
+    Skin.GuildPermissionCheckBoxTemplate(rankPermFrame.OfficerCheckbox)
+    Skin.GuildPermissionCheckBoxTemplate(rankPermFrame.InviteCheckbox)
     Skin.GuildPermissionCheckBoxTemplate(_G.GuildControlUIRankSettingsFrameCheckbox7)
     Skin.GuildPermissionCheckBoxTemplate(_G.GuildControlUIRankSettingsFrameCheckbox6)
     Skin.GuildPermissionCheckBoxTemplate(_G.GuildControlUIRankSettingsFrameCheckbox8)
@@ -81,6 +86,6 @@ function private.AddOns.Blizzard_GuildControlUI()
     Skin.GuildPermissionCheckBoxTemplate(_G.GuildControlUIRankSettingsFrameCheckbox15)
     Skin.GuildPermissionCheckBoxTemplate(_G.GuildControlUIRankSettingsFrameCheckbox19)
     Skin.GuildPermissionCheckBoxTemplate(_G.GuildControlUIRankSettingsFrameCheckbox16)
-    Skin.InputBoxTemplate(_G.GuildControlUI.rankPermFrame.goldBox)
+    Skin.InputBoxTemplate(rankPermFrame.goldBox)
     Skin.GuildPermissionCheckBoxTemplate(_G.GuildControlUIRankSettingsFrameCheckbox18)
 end

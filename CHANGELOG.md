@@ -1,14 +1,15 @@
 ﻿## [9.1.5.1] ##
 ### Fixed ###
 
-  * [tbc] LFG skin was broken
-  * [classic] An extra texture was visible when at max level and not tracking any reputations
   * The "At War" check box in the reputations frame was out of place
   * The reputation detail frame had an out of place background
+  * [retail] Various fixes for 9.2.0
+  * [retail] Error when changing guild bank permissions
+  * [classic] An extra texture was visible when at max level and not tracking any reputations
   * [classic] Error when mousing over the skill detail status bar
   * [classic] Spellbook tabs would not react to mouse input
+  * [tbc] LFG skin was broken
   * [tbc] The character title dropdown had a misaligned backdrop
-  * [retail] Various fixes for 9.2.0
 
 
 ## [9.1.5.0] ##

@@ -580,9 +580,9 @@ do --[[ SharedXML\SharedUIPanelTemplates.xml ]]
     function Skin.UIPanelScrollFrameTemplate2(Slider)
         Skin.UIPanelScrollFrameTemplate(Slider)
 
-        local name = Slider:GetName()
-        _G[name.."Top"]:SetAlpha(0)
-        _G[name.."Bottom"]:SetAlpha(0)
+        Slider.Top:SetAlpha(0)
+        Slider.Bottom:SetAlpha(0)
+        Slider.Middle:SetAlpha(0)
     end
     function Skin.MinimalScrollBarTemplate(Slider)
         Slider.trackBG:Hide()
