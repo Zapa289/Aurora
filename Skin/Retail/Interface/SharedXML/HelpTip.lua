@@ -28,7 +28,10 @@ do --[[ FrameXML\HelpTip.lua ]]
             Arrow:SetSize(41, 17)
         end
 
-        Base.SetTexture(Arrow.Arrow, "arrow"..direction)
+        --Base.SetTexture(Arrow.Arrow, "arrow"..direction)
+        _G.C_Timer.NewTicker(0, function(...)
+            Base.SetTexture(Arrow.Arrow, "arrow"..direction)
+        end, 1)
     end
 end
 
@@ -44,4 +47,14 @@ end
 function private.FrameXML.HelpTip()
     Util.Mixin(_G.HelpTipTemplateMixin, Hook.HelpTipTemplateMixin)
     Util.Mixin(_G.HelpTip.framePool, Hook.ObjectPoolMixin)
+
+	for _, frame in _G.HelpTip.framePool:EnumerateInactive() do
+        Skin.HelpTipTemplate(frame)
+        Util.Mixin(frame, Hook.HelpTipTemplateMixin)
+	end
+	for frame in _G.HelpTip.framePool:EnumerateActive() do
+        Skin.HelpTipTemplate(frame)
+        Util.Mixin(frame, Hook.HelpTipTemplateMixin)
+        Hook.HelpTipTemplateMixin.RotateArrow(frame, frame.Arrow.rotation)
+	end
 end
