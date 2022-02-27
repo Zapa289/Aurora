@@ -18,22 +18,13 @@ do --[[ AddOns\Blizzard_OrderHallUI.lua ]]
             self.Background:SetPoint("BOTTOMRIGHT")
         end
         function Hook.OrderHallTalentFrameMixin:RefreshAllData()
-            for choiceBackground in self.choiceTexturePool:EnumerateActive() do
-                if choiceBackground:GetAtlas() == "orderhalltalents-choice-background-on" then
+            for choiceBackground in self.choiceTrackTexturePool:EnumerateActive() do
+                if choiceBackground:GetAtlas():find("-on") then
                     choiceBackground._auroraLeft:Hide()
                     choiceBackground._auroraRight:Hide()
                 else
-                    local _, _, _, xOffset, yOffset = choiceBackground:GetPoint()
-                    if xOffset % 2 == 2 then
-                        xOffset = xOffset + 0.5
-                    end
-                    if yOffset % 2 == 2 then
-                        yOffset = yOffset + 0.5
-                    end
-
                     choiceBackground._auroraLeft:Show()
                     choiceBackground._auroraRight:Show()
-                    choiceBackground:SetPoint("TOP", xOffset, yOffset)
                 end
             end
 
@@ -47,12 +38,6 @@ do --[[ AddOns\Blizzard_OrderHallUI.lua ]]
             end
 
             for talentFrame in self.buttonPool:EnumerateActive() do
-                if not talentFrame.talent.prerequisiteTalentID then
-                    local _, _, _, xOffset, yOffset = talentFrame:GetPoint()
-                    xOffset = xOffset + 149
-                    talentFrame:SetPoint("TOPLEFT", _G.Round(xOffset), yOffset)
-                end
-
                 if talentFrame._auroraIconBorder then
                     if talentFrame.Border:IsShown() then
                         local atlas = talentFrame.Border:GetAtlas()
@@ -96,21 +81,24 @@ do --[[ AddOns\Blizzard_OrderHallUI.xml ]]
             Button.Cooldown:SetSwipeTexture(private.textures.plain)
             Button.Cooldown:SetSwipeColor(Color.green.r, Color.green.g, Color.green.b, 0.5)
         end
-        function Skin.GarrisonTalentChoiceTemplate(Texture)
+        function Skin.GarrisonTalentTrackTemplate(Texture)
             local parent = Texture:GetParent()
             Texture:SetAlpha(0)
 
             local left = parent:CreateTexture(nil, "ARTWORK")
-            left:SetPoint("TOPLEFT", Texture, 66, -26)
-            left:SetSize(4, 7)
+            left:SetPoint("TOPLEFT", Texture, 16, -26)
+            left:SetSize(4, 8)
             Base.SetTexture(left, "arrowLeft")
             Texture._auroraLeft = left
 
             local right = parent:CreateTexture(nil, "ARTWORK")
-            right:SetPoint("TOPRIGHT", Texture, -66, -26)
-            right:SetSize(4, 7)
+            right:SetPoint("TOPRIGHT", Texture, -15, -25)
+            right:SetSize(5, 10)
             Base.SetTexture(right, "arrowRight")
             Texture._auroraRight = right
+        end
+        function Skin.GarrisonTalentChoiceTemplate(Texture)
+            Texture:SetAlpha(0)
         end
         function Skin.GarrisonTalentArrowTemplate(Texture)
             local parent = Texture:GetParent()
