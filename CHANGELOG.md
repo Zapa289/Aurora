@@ -8,6 +8,7 @@
   * [classic] Error when mousing over the skill detail status bar
   * [classic] Spellbook tabs would not react to mouse input
   * [tbc] The character title dropdown had a misaligned backdrop
+  * [retail] Various fixes for 9.2.0
 
 
 ## [9.1.5.0] ##

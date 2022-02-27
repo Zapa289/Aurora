@@ -6,18 +6,16 @@ if private.isRetail then return end
 
 --[[ Core ]]
 local Aurora = private.Aurora
-local F = Aurora[1]
+local Skin = Aurora.Skin
 
 function private.FrameXML.ReadyCheck()
-    _G.ReadyCheckFrame:SetSize(300, 80)
-
-    F.CreateBD(_G.ReadyCheckListenerFrame)
+    Skin.FrameTypeFrame(_G.ReadyCheckListenerFrame)
     _G.ReadyCheckPortrait:SetAlpha(0)
     _G.select(2, _G.ReadyCheckListenerFrame:GetRegions()):Hide()
-    _G.ReadyCheckFrameText:SetPoint("CENTER", _G.ReadyCheckListenerFrame, "TOP", 0, -25)
+    _G.ReadyCheckFrameText:SetPoint("CENTER", _G.ReadyCheckListenerFrame, "TOP", 0, -30)
 
-    F.Reskin(_G.ReadyCheckFrameYesButton)
-    _G.ReadyCheckFrameYesButton:SetPoint("TOPRIGHT", _G.ReadyCheckListenerFrame, "TOP", -5, -45)
-    F.Reskin(_G.ReadyCheckFrameNoButton)
-    _G.ReadyCheckFrameNoButton:SetPoint("TOPLEFT", _G.ReadyCheckListenerFrame, "TOP", 5, -45)
+    Skin.UIPanelButtonTemplate(_G.ReadyCheckFrameYesButton)
+    _G.ReadyCheckFrameYesButton:SetPoint("TOPRIGHT", -20, -55)
+    Skin.UIPanelButtonTemplate(_G.ReadyCheckFrameNoButton)
+    _G.ReadyCheckFrameNoButton:SetPoint("TOPLEFT", 20, -55)
 end

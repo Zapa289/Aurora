@@ -878,9 +878,18 @@ function commands.test()
                 end
                 if private.isRetail then -- lfgPopups
                     popupArgs.lfgPopups = {
-                        name = "Group Finder Popups",
+                        name = "Group Popups",
                         type = "group",
                         args = {
+                            readyCheck = {
+                                name = "Ready Check",
+                                desc = "ShowReadyCheck",
+                                type = "execute",
+                                func = function()
+                                    _G.ShowReadyCheck("target", 5)
+                                end,
+                                order = 2,
+                            },
                             header1 = {
                                 name = "LFG",
                                 type = "header",
