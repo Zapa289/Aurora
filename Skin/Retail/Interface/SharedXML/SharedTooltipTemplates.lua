@@ -11,6 +11,7 @@ local Color, Util = Aurora.Color, Aurora.Util
 
 do --[[ FrameXML\SharedTooltipTemplates.lua ]]
     function Hook.SharedTooltip_SetBackdropStyle(self, style, embedded)
+        if self:IsForbidden() then return end
         if not (embedded or self.IsEmbedded) then
             local r, g, b = Color.frame:GetRGB()
             local a = Util.GetFrameAlpha()
