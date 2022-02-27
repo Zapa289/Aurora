@@ -171,7 +171,7 @@ function private.AddOns.Blizzard_PVPUI()
     Skin.PVPCasualStandardButtonTemplate(BonusFrame.RandomEpicBGButton)
     Skin.PVPCasualStandardButtonTemplate(BonusFrame.Arena1Button)
     Skin.PVPCasualStandardButtonTemplate(BonusFrame.BrawlButton)
-    Skin.PVPCasualSpecialEventButtonTemplate(BonusFrame.SpecialEventButton)
+    Skin.PVPCasualStandardButtonTemplate(BonusFrame.BrawlButton2)
     BonusFrame.ShadowOverlay:Hide()
 
     Skin.MagicButtonTemplate(HonorFrame.QueueButton)
