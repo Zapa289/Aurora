@@ -161,7 +161,7 @@ function private.AddOns.Blizzard_GuildBankUI()
     -------------------
     local Info = GuildBankFrame.Info
     Skin.UIPanelButtonTemplate(Info.SaveButton)
-    Info.SaveButton:SetPoint("BOTTOMLEFT", GuildBankFrame.MoneyFrameBG, 0, 5)
+    Info.SaveButton:SetPoint("BOTTOMLEFT", GuildBankFrame.MoneyFrameBG, "TOPLEFT", 0, 5)
 
     Skin.UIPanelScrollFrameTemplate(Info.ScrollFrame)
     Base.SetBackdrop(Info.ScrollFrame, Color.gray, 0.5)
@@ -196,7 +196,7 @@ function private.AddOns.Blizzard_GuildBankUI()
         bottom = 5,
     })
 
-    bg = BorderBox:GetBackdropTexture("bg")
+    local popupBG = BorderBox:GetBackdropTexture("bg")
     for i = 1, 9 do
         select(i, GuildBankPopupFrame.BorderBox:GetRegions()):Hide()
     end
@@ -206,22 +206,22 @@ function private.AddOns.Blizzard_GuildBankUI()
     chooseIconLabel:SetPoint("BOTTOMLEFT", GuildBankPopupFrame.ScrollFrame, "TOPLEFT", -1, 1)
 
     Skin.FrameTypeEditBox(GuildBankPopupFrame.EditBox)
-    GuildBankPopupFrame.EditBox:SetPoint("TOPLEFT", bg, 20, -20)
+    GuildBankPopupFrame.EditBox:SetPoint("TOPLEFT", popupBG, 20, -20)
     _G.GuildBankPopupNameLeft:Hide()
     _G.GuildBankPopupNameMiddle:Hide()
     _G.GuildBankPopupNameRight:Hide()
 
     Skin.UIPanelButtonTemplate(GuildBankPopupFrame.CancelButton)
     Skin.UIPanelButtonTemplate(GuildBankPopupFrame.OkayButton)
-    Util.PositionRelative("BOTTOMRIGHT", bg, "BOTTOMRIGHT", -5, 5, 5, "Left", {
+    Util.PositionRelative("BOTTOMRIGHT", popupBG, "BOTTOMRIGHT", -5, 5, 5, "Left", {
         GuildBankPopupFrame.CancelButton,
         GuildBankPopupFrame.OkayButton,
     })
 
     Skin.ListScrollFrameTemplate(GuildBankPopupFrame.ScrollFrame)
     GuildBankPopupFrame.ScrollFrame:ClearAllPoints()
-    GuildBankPopupFrame.ScrollFrame:SetPoint("TOPLEFT", bg, 25, -60)
-    GuildBankPopupFrame.ScrollFrame:SetPoint("BOTTOMRIGHT", bg, -23, 33)
+    GuildBankPopupFrame.ScrollFrame:SetPoint("TOPLEFT", popupBG, 25, -60)
+    GuildBankPopupFrame.ScrollFrame:SetPoint("BOTTOMRIGHT", popupBG, -23, 33)
 
     ------------------------
     -- GuildItemSearchBox --
