@@ -1,10 +1,15 @@
-﻿## [9.1.5.1] ##
+﻿## [9.2.0.0] ##
+### Changed ###
+
+  * [retail] Updated guild bank skin
+
 ### Fixed ###
 
   * The "At War" check box in the reputations frame was out of place
   * The reputation detail frame had an out of place background
   * [retail] Various fixes for 9.2.0
   * [retail] Error when changing guild bank permissions
+  * [retail] Error when opening BFA island queue frame
   * [classic] An extra texture was visible when at max level and not tracking any reputations
   * [classic] Error when mousing over the skill detail status bar
   * [classic] Spellbook tabs would not react to mouse input
@@ -351,7 +356,7 @@
   * Error when opening azerite respec UI
 
 [Unreleased]: https://github.com/Haleth/Aurora/compare/master...develop
-[9.1.5.1]: https://github.com/Haleth/Aurora/compare/9.1.5.0...9.1.5.1
+[9.2.0.0]: https://github.com/Haleth/Aurora/compare/9.1.5.0...9.2.0.0
 [9.1.5.0]: https://github.com/Haleth/Aurora/compare/9.0.5.0...9.1.5.0
 [9.0.5.0]: https://github.com/Haleth/Aurora/compare/9.0.2.1...9.0.5.0
 [9.0.2.1]: https://github.com/Haleth/Aurora/compare/9.0.2.0...9.0.2.1
