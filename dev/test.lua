@@ -130,9 +130,11 @@ local function LoadLFGFunctions()
         return dungeonId, "invited", nil, nil, "TANK"
     end
 
-    function _G.C_Scenario.GetInfo()
-            -- scenarioName, currentStage, numStages, flags, hasBonusStep, isBonusStepComplete, completed, xp, money
-        return "LFG_SUBTYPEID_SCENARIO", 1, 3,        nil,   GetBoolen(),  true,         GetBoolen(), 123, 456
+    if _G.C_Scenario then
+        function _G.C_Scenario.GetInfo()
+                -- scenarioName, currentStage, numStages, flags, hasBonusStep, isBonusStepComplete, completed, xp, money
+            return "LFG_SUBTYPEID_SCENARIO", 1, 3,        nil,   GetBoolen(),  true,         GetBoolen(), 123, 456
+        end
     end
 
 
@@ -876,7 +878,7 @@ function commands.test()
                         },
                     }
                 end
-                if private.isRetail then -- lfgPopups
+                do -- lfgPopups
                     popupArgs.lfgPopups = {
                         name = "Group Popups",
                         type = "group",
@@ -888,33 +890,37 @@ function commands.test()
                                 func = function()
                                     _G.ShowReadyCheck("target", 5)
                                 end,
-                                order = 2,
+                                order = 1,
                             },
                             header1 = {
                                 name = "LFG",
                                 type = "header",
-                                order = 0,
+                                hidden = not _G.LFGDungeonReadyPopup,
+                                order = 10,
                             },
                             typeID = {
                                 name = "typeID",
                                 type = "select",
+                                hidden = not _G.LFGDungeonReadyPopup,
                                 values = GetDungeonTypeIDs,
                                 get = GetDungeonTypeID,
                                 set = SetDungeonTypeID,
-                                order = 1,
+                                order = 11,
                             },
                             subTypeID = {
                                 name = "subTypeID",
                                 type = "select",
+                                hidden = not _G.LFGDungeonReadyPopup,
                                 values = GetDungeonSubTypeIDs,
                                 get = GetDungeonSubTypeID,
                                 set = SetDungeonSubTypeID,
-                                order = 1,
+                                order = 11,
                             },
                             proposal = {
                                 name = "LFG Proposal",
                                 desc = "LFGDungeonReadyDialog",
                                 type = "execute",
+                                hidden = not _G.LFGDungeonReadyPopup,
                                 func = function()
                                     SetHasResponded(false)
                                     if _G.LFGDungeonReadyPopup:IsShown() then
@@ -923,12 +929,13 @@ function commands.test()
                                         _G.LFGEventFrame_OnEvent(_G.LFGDungeonReadyPopup, "LFG_PROPOSAL_SHOW")
                                     end
                                 end,
-                                order = 2,
+                                order = 13,
                             },
                             lfgReadyCheck = {
                                 name = "LFG Ready Check",
                                 desc = "LFGDungeonReadyStatus",
                                 type = "execute",
+                                hidden = not _G.LFGDungeonReadyPopup,
                                 func = function()
                                     SetHasResponded(true)
                                     if _G.LFGDungeonReadyPopup:IsShown() then
@@ -937,60 +944,66 @@ function commands.test()
                                         _G.LFGEventFrame_OnEvent(_G.LFGDungeonReadyPopup, "LFG_PROPOSAL_SHOW")
                                     end
                                 end,
-                                order = 2,
+                                order = 13,
                             },
                             invite = {
                                 name = "LFG Invite",
                                 desc = "LFGInvitePopup",
                                 type = "execute",
+                                hidden = not _G.LFGInvitePopup,
                                 func = function()
                                     _G.LFGInvitePopup.timeOut = 1000000
                                     _G.StaticPopupSpecial_Show(_G.LFGInvitePopup)
                                 end,
-                                order = 3,
+                                order = 13,
                             },
                             listApp = {
                                 name = "LFG List Application",
                                 desc = "LFGListApplicationDialog",
                                 type = "execute",
+                                hidden = not _G.LFGListApplicationDialog,
                                 func = function()
                                     _G.LFGListApplicationDialog.timeOut = 1000000
                                     _G.LFGListApplicationDialog_Show(_G.LFGListApplicationDialog, GetDungeonID())
                                 end,
-                                order = 3,
+                                order = 13,
                             },
                             listInvite = {
                                 name = "LFG List Invite",
                                 desc = "LFGListInviteDialog",
                                 type = "execute",
+                                hidden = not _G.LFGListInviteDialog,
                                 func = function()
                                     _G.LFGListInviteDialog.timeOut = 1000000
                                     _G.LFGListInviteDialog_Show(_G.LFGListInviteDialog, GetDungeonID())
                                 end,
-                                order = 3,
+                                order = 13,
                             },
                             header2 = {
                                 name = "LFD",
                                 type = "header",
-                                order = 4,
+                                hidden = not _G.LFDFrame_OnEvent,
+                                order = 20,
                             },
                             lfdRollCheck = {
                                 name = "LFD Roll Check",
                                 desc = "LFDRoleCheckPopup",
                                 type = "execute",
+                                hidden = not _G.LFDFrame_OnEvent,
                                 func = function()
                                     _G.LFDFrame_OnEvent(_G.LFDParentFrame, "LFG_ROLE_CHECK_SHOW")
                                 end,
-                                order = 4,
+                                order = 22,
                             },
                             lfdReadyCheck = {
                                 name = "LFD Ready Check",
                                 desc = "LFDReadyCheckPopup",
                                 type = "execute",
+                                hidden = not _G.LFDFrame_OnEvent,
                                 func = function()
                                     _G.LFDFrame_OnEvent(_G.LFDParentFrame, "LFG_READY_CHECK_SHOW")
                                 end,
-                                order = 4,
+                                order = 22,
                             },
                         },
                     }
