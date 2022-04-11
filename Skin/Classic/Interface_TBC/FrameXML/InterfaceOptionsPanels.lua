@@ -79,6 +79,7 @@ function private.FrameXML.InterfaceOptionsPanels()
     Skin.InterfaceOptionsCheckButtonTemplate(_G.InterfaceOptionsDisplayPanelShowDetailedTooltips)
     Skin.InterfaceOptionsCheckButtonTemplate(_G.InterfaceOptionsDisplayPanelShowLoadingScreenTip)
     Skin.InterfaceOptionsCheckButtonTemplate(_G.InterfaceOptionsDisplayPanelShowTutorials)
+    Skin.InterfaceOptionsCheckButtonTemplate(_G.InterfaceOptionsDisplayPanelShowFreeBagSpace)
     Skin.UIPanelButtonTemplate(_G.InterfaceOptionsDisplayPanelResetTutorials)
     Skin.UIDropDownMenuTemplate(_G.InterfaceOptionsDisplayPanelDisplayDropDown)
     Skin.UIDropDownMenuTemplate(_G.InterfaceOptionsDisplayPanelChatBubblesDropDown)
@@ -173,9 +174,18 @@ function private.FrameXML.InterfaceOptionsPanels()
     local Accessibility = _G.InterfaceOptionsAccessibilityPanel
     Skin.InterfaceOptionsCheckButtonTemplate(Accessibility.MovePad)
     Skin.InterfaceOptionsCheckButtonTemplate(_G.InterfaceOptionsAccessibilityPanelCinematicSubtitles)
-    Skin.InterfaceOptionsCheckButtonTemplate(Accessibility.ColorblindMode)
+    Skin.InterfaceOptionsCheckButtonTemplate(_G.InterfaceOptionsAccessibilityPanelSpeechToText)
+    Skin.InterfaceOptionsCheckButtonTemplate(_G.InterfaceOptionsAccessibilityPanelTextToSpeech)
+    Skin.InterfaceOptionsCheckButtonTemplate(_G.InterfaceOptionsAccessibilityPanelRemoteTextToSpeech)
+    Skin.UIDropDownMenuTemplate(Accessibility.ShakeIntensityDropdown)
+    Skin.UIDropDownMenuTemplate(Accessibility.MotionSicknessDropdown)
+    Skin.UIDropDownMenuTemplate(Accessibility.CursorSizeDropdown)
+    Skin.UIDropDownMenuTemplate(Accessibility.RemoteTextToSpeechVoiceDropdown)
+    Skin.UIPanelButtonTemplate(_G.InterfaceOptionsAccessibilityPanelConfigureTextToSpeech)
+    Skin.UIPanelButtonTemplate(Accessibility.RemoteTextToSpeechVoicePlaySample)
 
-    local FilterExamples = Accessibility.ColorblindFilterExamples
+    local Colorblind = _G.InterfaceOptionsColorblindPanel
+    local FilterExamples = Colorblind.ColorblindFilterExamples
     FilterExamples.Hostile:SetTexCoord(0.2, 0.8, 0.4, 0.6)
     FilterExamples.Hostile:SetPoint("BOTTOMLEFT", 9, 158)
     FilterExamples.Hostile:SetSize(103, 10)
@@ -191,8 +201,8 @@ function private.FrameXML.InterfaceOptionsPanels()
     FilterExamples.Friendly:SetSize(103, 10)
     FilterExamples.FriendlyLabel:SetPoint("BOTTOMLEFT", FilterExamples.Friendly, "TOPLEFT", 1, 7)
 
-    Skin.UIDropDownMenuTemplate(Accessibility.ColorblindFilterDropDown)
-    Skin.OptionsSliderTemplate(_G.InterfaceOptionsAccessibilityPanelColorblindStrengthSlider)
+    Skin.UIDropDownMenuTemplate(Colorblind.ColorblindFilterDropDown)
+    Skin.OptionsSliderTemplate(_G.InterfaceOptionsColorblindPanelColorblindStrengthSlider)
 
     -------------
     -- Section --
