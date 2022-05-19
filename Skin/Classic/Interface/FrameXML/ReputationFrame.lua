@@ -128,6 +128,8 @@ function private.FrameXML.ReputationFrame()
     _G.ReputationListScrollFrame:SetPoint("BOTTOMRIGHT", charFrameBG, -23, 4)
 
     Skin.FauxScrollFrameTemplate(_G.ReputationListScrollFrame)
+    _G.ReputationListScrollFrameScrollBar:SetPoint("TOPLEFT", _G.ReputationListScrollFrame, "TOPRIGHT", 11, -40)
+    _G.ReputationListScrollFrameScrollBar:SetPoint("BOTTOMLEFT", _G.ReputationListScrollFrame, "BOTTOMRIGHT", 11, 15)
     local top, bottom = _G.ReputationListScrollFrame:GetRegions()
     top:Hide()
     bottom:Hide()
