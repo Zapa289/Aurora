@@ -45,6 +45,21 @@ do --[[ FrameXML\ChatConfigFrame.lua ]]
             Skin[swatchTemplate](_G[swatchName])
         end
     end
+    function Hook.TextToSpeechFrame_CreateCheckboxes(frame, checkBoxTable, checkBoxTemplate)
+        local checkBoxNameString = frame:GetName().."CheckBox"
+
+        for index, value in ipairs(checkBoxTable) do
+            local checkBoxName = checkBoxNameString..index
+            Skin[checkBoxTemplate](_G[checkBoxName])
+
+            if value.subTypes then
+                local subCheckBoxNameString = checkBoxName.."_"
+                for i, v in ipairs(value.subTypes) do
+                    Skin[subCheckBoxTemplate](_G[subCheckBoxNameString..i])
+                end
+            end
+        end
+    end
 end
 
 do --[[ FrameXML\ChatConfigFrame.xml ]]
@@ -82,6 +97,15 @@ do --[[ FrameXML\ChatConfigFrame.xml ]]
         })
 
         Skin.ChatConfigCheckButtonTemplate(Frame.CheckButton)
+    end
+    function Skin.ChatConfigCheckBoxSmallTemplate(Frame)
+        Skin.ChatConfigBaseCheckButtonTemplate(Frame.CheckButton)
+    end
+    function Skin.ChatConfigCheckButtonTemplate(CheckButton)
+        Skin.ChatConfigBaseCheckButtonTemplate(CheckButton)
+    end
+    function Skin.TextToSpeechChatTypeCheckButtonTemplate(CheckButton)
+        Skin.ChatConfigBaseCheckButtonTemplate(CheckButton)
     end
     function Skin.ChatConfigCheckBoxWithSwatchTemplate(Frame)
         Skin.ChatConfigCheckBoxTemplate(Frame)
@@ -146,6 +170,7 @@ function private.FrameXML.ChatConfigFrame()
     _G.hooksecurefunc("ChatConfig_CreateCheckboxes", Hook.ChatConfig_CreateCheckboxes)
     _G.hooksecurefunc("ChatConfig_CreateTieredCheckboxes", Hook.ChatConfig_CreateTieredCheckboxes)
     _G.hooksecurefunc("ChatConfig_CreateColorSwatches", Hook.ChatConfig_CreateColorSwatches)
+    _G.hooksecurefunc("TextToSpeechFrame_CreateCheckboxes", Hook.TextToSpeechFrame_CreateCheckboxes)
 
     local ChatConfigFrame = _G.ChatConfigFrame
     Skin.DialogBorderTemplate(ChatConfigFrame)
@@ -179,7 +204,14 @@ function private.FrameXML.ChatConfigFrame()
     ChatConfigFrame.DefaultButton:SetPoint("BOTTOMLEFT", 10, 10)
     Skin.UIPanelButtonTemplate(ChatConfigFrame.RedockButton)
     ChatConfigFrame.RedockButton:SetPoint("BOTTOMLEFT", ChatConfigFrame.DefaultButton, "BOTTOMRIGHT", 5, 0)
+    Skin.UIPanelButtonTemplate(ChatConfigFrame.ToggleChatButton)
+    ChatConfigFrame.ToggleChatButton:SetPoint("BOTTOMLEFT", ChatConfigFrame.RedockButton, "BOTTOMRIGHT", 5, 0)
+
     Skin.UIPanelButtonTemplate(_G.CombatLogDefaultButton)
+
+    Skin.UIPanelButtonTemplate(_G.TextToSpeechDefaultButton)
+    Skin.UICheckButtonTemplate(_G.TextToSpeechCharacterSpecificButton)
+
     --Skin.UIPanelButtonTemplate(_G.ChatConfigFrameCancelButton) -- BlizzWTF: Not used?
     Skin.UIPanelButtonTemplate(_G.ChatConfigFrameOkayButton)
     _G.ChatConfigFrameOkayButton:ClearAllPoints()
@@ -238,6 +270,10 @@ function private.FrameXML.ChatConfigFrame()
 
     -- Formatting --
     Skin.ChatConfigCheckButtonTemplate(_G.CombatConfigFormattingShowTimeStamp)
+    Skin.ChatConfigCheckButtonTemplate(_G.CombatConfigFormattingShowBraces)
+    Skin.ChatConfigSmallCheckButtonTemplate(_G.CombatConfigFormattingUnitNames)
+    Skin.ChatConfigSmallCheckButtonTemplate(_G.CombatConfigFormattingSpellNames)
+    Skin.ChatConfigSmallCheckButtonTemplate(_G.CombatConfigFormattingItemNames)
     Skin.ChatConfigCheckButtonTemplate(_G.CombatConfigFormattingFullText)
 
     -- Settings --
@@ -251,4 +287,19 @@ function private.FrameXML.ChatConfigFrame()
     for index, value in ipairs(_G.COMBAT_CONFIG_TABS) do
         Skin.ChatConfigTabTemplate(_G[_G.CHAT_CONFIG_COMBAT_TAB_NAME..index])
     end
+
+    -- Text to Speech --
+    Skin.ChatConfigCheckButtonTemplate(_G.TextToSpeechFramePanelContainer.PlaySoundSeparatingChatLinesCheckButton)
+    Skin.ChatConfigCheckButtonTemplate(_G.TextToSpeechFramePanelContainer.AddCharacterNameToSpeechCheckButton)
+    Skin.ChatConfigCheckButtonTemplate(_G.TextToSpeechFramePanelContainer.PlayActivitySoundWhenNotFocusedCheckButton)
+    Skin.ChatConfigCheckButtonTemplate(_G.TextToSpeechFramePanelContainer.NarrateMyMessagesCheckButton)
+    Skin.ChatConfigCheckButtonTemplate(_G.TextToSpeechFramePanelContainer.UseAlternateVoiceForSystemMessagesCheckButton)
+    Skin.UIPanelButtonTemplate(_G.TextToSpeechFramePlaySampleButton)
+    Skin.UIPanelButtonTemplate(_G.TextToSpeechFramePlaySampleAlternateButton)
+    Skin.UIDropDownMenuTemplate(_G.TextToSpeechFrameTtsVoiceDropdown)
+    Skin.UIDropDownMenuTemplate(_G.TextToSpeechFrameTtsVoiceAlternateDropdown)
+    Skin.OptionsSliderTemplate(_G.TextToSpeechFrameAdjustRateSlider)
+    Skin.OptionsSliderTemplate(_G.TextToSpeechFrameAdjustVolumeSlider)
+
+
 end
