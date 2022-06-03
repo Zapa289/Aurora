@@ -46,7 +46,7 @@ do --[[ FrameXML\MailFrame.lua ]]
         for i = 1, _G.ATTACHMENTS_MAX_SEND do
             local button = _G.SendMailFrame.SendMailAttachments[i]
             if i == 1 then
-                button:SetPoint("TOPLEFT", _G.SendMailScrollFrame, "BOTTOMLEFT", 3, -10)
+                button:SetPoint("TOPLEFT", _G.MailEditBox, "BOTTOMLEFT", 3, -10)
             else
                 if (i % _G.ATTACHMENTS_PER_ROW_SEND) == 1 then
                     button:SetPoint("TOPLEFT", _G.SendMailFrame.SendMailAttachments[i - _G.ATTACHMENTS_PER_ROW_SEND], "BOTTOMLEFT", 23, -9)
@@ -70,8 +70,8 @@ do --[[ FrameXML\MailFrame.lua ]]
             scrollHeight = 173
         end
 
-        _G.SendMailScrollFrame:SetHeight(scrollHeight)
-        _G.SendMailScrollChildFrame:SetHeight(scrollHeight)
+        _G.MailEditBox:SetHeight(scrollHeight)
+        _G.MailEditBox.ScrollBox:SetHeight(scrollHeight)
     end
     function Hook.OpenMail_Update()
         if ( not _G.InboxFrame.openMailID ) then
@@ -262,24 +262,34 @@ function private.FrameXML.MailFrame()
         select(i, _G.SendMailFrame:GetRegions()):Hide()
     end
 
-    Skin.UIPanelScrollFrameTemplate(_G.SendMailScrollFrame)
-    _G.SendMailScrollFrame:SetPoint("TOPLEFT", 10, -83)
-    _G.SendMailScrollFrame:SetWidth(298)
+    -- Skin.UIPanelScrollFrameTemplate(_G.MailEditBox)
+    _G.MailEditBoxScrollBar.Background:Hide()
+    _G.MailEditBoxScrollBar:SetPoint("TOPLEFT", _G.MailEditBox.ScrollBox, "TOPRIGHT", 0, -17)
+    _G.MailEditBoxScrollBar:SetPoint("BOTTOMLEFT", _G.MailEditBox.ScrollBox, "BOTTOMRIGHT", 0, 17)
+    _G.MailEditBoxScrollBar.Forward:ClearAllPoints()
+    _G.MailEditBoxScrollBar.Forward:SetPoint("TOP", _G.MailEditBoxScrollBar, "BOTTOM", 0, 0)
+    _G.MailEditBoxScrollBar.Back:ClearAllPoints()
+    _G.MailEditBoxScrollBar.Back:SetPoint("BOTTOM", _G.MailEditBoxScrollBar, "TOP", 0, 0)
+    _G.MailEditBoxScrollBar.Track:SetPoint("TOPLEFT", _G.MailEditBoxScrollBar, "TOPLEFT", 2, 0)
+    _G.MailEditBoxScrollBar.Track:SetPoint("BOTTOMRIGHT", _G.MailEditBoxScrollBar, "BOTTOMRIGHT", -2, 0)
+    Skin.UIPanelScrollUpButtonTemplate(_G.MailEditBoxScrollBar.Back)
+    Skin.UIPanelScrollDownButtonTemplate(_G.MailEditBoxScrollBar.Forward)
+    Skin.ScrollBarThumb(_G.MailEditBoxScrollBar.Track.Thumb.thumbTexture)
+    _G.MailEditBox:SetPoint("TOPLEFT", 10, -83)
+    _G.MailEditBox:SetWidth(298)
 
     _G.SendStationeryBackgroundLeft:Hide()
     _G.SendStationeryBackgroundRight:Hide()
-    _G.SendScrollBarBackgroundTop:Hide()
-    select(4, _G.SendMailScrollFrame:GetRegions()):Hide() -- SendScrollBarBackgroundBottom
 
-    local sendScrollBG = _G.CreateFrame("Frame", nil, _G.SendMailScrollFrame)
-    sendScrollBG:SetFrameLevel(_G.SendMailScrollFrame:GetFrameLevel() - 1)
+    local sendScrollBG = _G.CreateFrame("Frame", nil, _G.MailEditBox)
+    sendScrollBG:SetFrameLevel(_G.MailEditBox:GetFrameLevel() - 1)
     sendScrollBG:SetPoint("TOPLEFT", 0, 2)
     sendScrollBG:SetPoint("BOTTOMRIGHT", 20, -2)
     Base.SetBackdrop(sendScrollBG, Color.frame)
 
-    _G.SendMailScrollChildFrame:SetSize(298, 257)
-    _G.SendMailBodyEditBox:SetPoint("TOPLEFT", 2, -2)
-    _G.SendMailBodyEditBox:SetWidth(298)
+    -- _G.SendMailScrollChildFrame:SetSize(298, 257)
+    -- _G.SendMailBodyEditBox:SetPoint("TOPLEFT", 2, -2)
+    -- _G.SendMailBodyEditBox:SetWidth(298)
 
     -- BlizzWTF: these should use InputBoxTemplate
     Skin.SendMailInputBox(_G.SendMailNameEditBox)
